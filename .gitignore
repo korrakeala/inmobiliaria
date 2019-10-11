@@ -30,4 +30,4 @@ build/
 ### VS Code ###
 .vscode/
 
-
+!**/inmobiliaria/src/main/resources/application.properties
