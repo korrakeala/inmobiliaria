@@ -1,29 +1,28 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
-import ar.com.ada.api.inmobiliaria.entities.*;
+import javax.persistence.*;
 
 import ar.com.ada.api.inmobiliaria.interfaces.IOperable;
 
 /**
  * Alquiler
  */
-public class Alquiler implements IOperable{
 @Entity
 @Table(name = "alquiler")
-public class Alquiler {
+public class Alquiler implements IOperable{
 
     @Id
-    @Table(name = "alquiler_id")
+    @Column(name = "alquiler_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int alquilerId;
 
-    @Table (name = "operacion_id")
+    @Column(name = "operacion_id")
     private int operacionId;
 
-    @Table (name="tipo_alquiler")
+    @Column(name="tipo_alquiler")
     private String tipoAlquiler;
 
-    @Table (name="plazo_alquiler")
+    @Column(name="plazo_alquiler")
     private String plazoAlquiler;
 
     
