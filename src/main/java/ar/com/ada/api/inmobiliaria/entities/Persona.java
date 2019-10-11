@@ -1,9 +1,9 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
 /**
- * Operacion
+ * Persona
  */
-public class Operacion {
+public class Persona {
 
     
 }
