@@ -5,5 +5,8 @@ package ar.com.ada.api.inmobiliaria.entities;
  */
 public class Persona {
 
-    
+    String nombre;
+    int dni;
+    int edad;
+    String email;
 }
