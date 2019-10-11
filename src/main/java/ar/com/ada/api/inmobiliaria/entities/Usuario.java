@@ -11,12 +11,10 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int usuarioId;
 
-    @Column(name = "username")
     private String username;
 
     private String password;
 
-    @Column(name = "email")
     private String email;
 
     public int getUsuarioId() {

@@ -15,7 +15,7 @@ public class Inmobiliaria {
 
     private String nombre;
 
-    private String cuil;
+    private String cuit;
 
     @Column (name = "usuario_id")
     private int usuarioId;
