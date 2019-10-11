@@ -20,6 +20,30 @@ public class Aviso {
     @Column (name="operacion_id")
     private int operacionId;
 
+    public int getAvisoId() {
+        return avisoId;
+    }
+
+    public void setAvisoId(int avisoId) {
+        this.avisoId = avisoId;
+    }
+
+    public int getInmuebleId() {
+        return inmuebleId;
+    }
+
+    public void setInmuebleId(int inmuebleId) {
+        this.inmuebleId = inmuebleId;
+    }
+
+    public int getOperacionId() {
+        return operacionId;
+    }
+
+    public void setOperacionId(int operacionId) {
+        this.operacionId = operacionId;
+    }
+
 
     
 }
