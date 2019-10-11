@@ -18,7 +18,7 @@ public class Aviso {
     private int inmuebleId;
 
     @Column (name="operacion_id")
-    private int operacionId
+    private int operacionId;
 
 
     
