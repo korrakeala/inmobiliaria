@@ -21,6 +21,7 @@ public class InmuebleService {
         inmueble.setTipoInmueble(tipoInmueble);
         inmueble.setCantAmb(cantAmb);
         inmueble.setDireccion(direccion);
+        //falta agregar reservado boolean
         inmueble.setSuperficie(superficie);
         inmueble.setCantDormitorio(cantDormitorio);
         inmueble.setAptoProf(aptoProf);
