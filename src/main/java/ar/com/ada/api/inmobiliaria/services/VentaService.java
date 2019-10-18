@@ -3,10 +3,10 @@ package ar.com.ada.api.inmobiliaria.services;
 import org.springframework.stereotype.Service;
 
 /**
- * UsuarioService
+ * VentaService
  */
 @Service
-public class UsuarioService {
+public class VentaService {
 
     
 }
