@@ -9,15 +9,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 
 /**
  * Locatario
  */
 @Entity
 @Table (name = "locatario")
-public class Locatario extends Persona {
+public class Locatario extends Persona implements ITieneUsuario {
 
     @Id
     @Column(name="locatario_id")
@@ -26,7 +30,9 @@ public class Locatario extends Persona {
 
     @OneToMany (mappedBy = "locatario", cascade = CascadeType.ALL)
     List<Reserva> reservas = new ArrayList<Reserva>();
-    
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     Usuario usuario;
 
     public int getLocatarioId() {
@@ -52,4 +58,5 @@ public class Locatario extends Persona {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
 }

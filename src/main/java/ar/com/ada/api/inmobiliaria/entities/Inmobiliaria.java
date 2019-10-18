@@ -1,13 +1,20 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 
 /**
  * Inmobiliaria
  */
 @Entity
 @Table (name = "inmobiliaria")
-public class Inmobiliaria {
+public class Inmobiliaria implements ITieneUsuario{
 
     @Id
     @Column (name ="inmobiliaria_id")
@@ -17,8 +24,9 @@ public class Inmobiliaria {
 
     private String cuil;
 
-    @Column (name = "usuario_id")
-    private int usuarioId;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+    private Usuario usuario;
 
     public int getInmobiliariaId() {
         return inmobiliariaId;
@@ -44,12 +52,12 @@ public class Inmobiliaria {
         this.cuil = cuil;
     }
 
-    public int getUsuarioId() {
-        return usuarioId;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     
