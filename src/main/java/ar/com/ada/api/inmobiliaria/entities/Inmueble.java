@@ -1,5 +1,8 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -13,11 +16,18 @@ public class Inmueble {
     @Column (name ="inmueble_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int inmuebleId;
-    @Column (name = "locador_id")
-    int locadorId;
+
+    @ManyToOne
+    @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     Locador locador;
+
+    @OneToMany (mappedBy = "inmueble", cascade = CascadeType.ALL)
+    List<Aviso> avisos = new ArrayList<Aviso>();
+
     @Column (name = "tipo_inmueble")
     String tipoInmueble;
+    @Column (name = "cant_amb")
+    int cantAmb;
     String direccion;
     boolean reservado;
     // Coordenada ubicacion; (para usar API Maps a futuro)
@@ -33,9 +43,6 @@ public class Inmueble {
     @Column (name = "antiguedad_anios")
     int antiguedadAnios;
     // (etc)
-    Aviso aviso;
-    @Column (name = "aviso_id")
-    int avisoId;
 
     public int getInmuebleId() {
         return inmuebleId;
@@ -43,14 +50,6 @@ public class Inmueble {
 
     public void setInmuebleId(int inmuebleId) {
         this.inmuebleId = inmuebleId;
-    }
-
-    public int getLocadorId() {
-        return locadorId;
-    }
-
-    public void setLocadorId(int locadorId) {
-        this.locadorId = locadorId;
     }
 
     public Locador getLocador() {
@@ -139,21 +138,5 @@ public class Inmueble {
 
     public void setAntiguedadAnios(int antiguedadAnios) {
         this.antiguedadAnios = antiguedadAnios;
-    }
-
-    public Aviso getAviso() {
-        return aviso;
-    }
-
-    public void setAviso(Aviso aviso) {
-        this.aviso = aviso;
-    }
-
-    public int getAvisoId() {
-        return avisoId;
-    }
-
-    public void setAvisoId(int avisoId) {
-        this.avisoId = avisoId;
     }
 }
