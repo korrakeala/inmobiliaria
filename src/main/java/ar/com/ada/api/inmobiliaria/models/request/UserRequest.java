@@ -1,11 +1,10 @@
 package ar.com.ada.api.inmobiliaria.models.request;
 
-import java.math.BigDecimal;
 
 /**
- * UsuarioRequest
+ * UserRequest
  */
-public class UsuarioRequest {
+public class UserRequest {
 
     public String userName;
     public String password;
