@@ -1,11 +1,12 @@
 package ar.com.ada.api.inmobiliaria.repo;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface InmuebleRepository {
+import ar.com.ada.api.inmobiliaria.entities.Inmueble;
 
-    
+@Repository
+public interface InmuebleRepository extends JpaRepository<Inmueble, Integer>{
 
 
     
