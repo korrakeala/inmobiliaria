@@ -3,17 +3,27 @@ package ar.com.ada.api.inmobiliaria.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Inmueble
  */
 @Entity
-@Table (name = "inmueble")
+@Table(name = "inmueble")
 public class Inmueble {
 
     @Id
-    @Column (name ="inmueble_id")
+    @Column(name = "inmueble_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int inmuebleId;
 
@@ -21,25 +31,29 @@ public class Inmueble {
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     Locador locador;
 
-    @OneToMany (mappedBy = "inmueble", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "inmueble", cascade = CascadeType.ALL)
     List<Aviso> avisos = new ArrayList<Aviso>();
 
-    @Column (name = "tipo_inmueble")
+    @OneToOne
+    @JoinColumn(name = "reserva_id", referencedColumnName = "reserva_id")
+    private Reserva reserva;
+
+    @Column(name = "tipo_inmueble")
     String tipoInmueble;
-    @Column (name = "cant_amb")
+    @Column(name = "cant_amb")
     int cantAmb;
     String direccion;
     boolean reservado;
     // Coordenada ubicacion; (para usar API Maps a futuro)
-    int superficie; //en m2
-    @Column (name = "cant_dormitorio")
+    int superficie; // en m2
+    @Column(name = "cant_dormitorio")
     int cantDormitorio;
-    @Column (name = "apto_prof")
+    @Column(name = "apto_prof")
     boolean aptoProf;
     String disposicion;
-    @Column (name = "cant_banios")
+    @Column(name = "cant_banios")
     int cantBanios;
-    @Column (name = "antiguedad_anios")
+    @Column(name = "antiguedad_anios")
     int antiguedadAnios;
     // (etc)
 
@@ -129,5 +143,29 @@ public class Inmueble {
 
     public void setAntiguedadAnios(int antiguedadAnios) {
         this.antiguedadAnios = antiguedadAnios;
+    }
+
+    public List<Aviso> getAvisos() {
+        return avisos;
+    }
+
+    public void setAvisos(List<Aviso> avisos) {
+        this.avisos = avisos;
+    }
+
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
+
+    public int getCantAmb() {
+        return cantAmb;
+    }
+
+    public void setCantAmb(int cantAmb) {
+        this.cantAmb = cantAmb;
     }
 }

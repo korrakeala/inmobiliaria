@@ -13,11 +13,11 @@ import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
  * Inmobiliaria
  */
 @Entity
-@Table (name = "inmobiliaria")
-public class Inmobiliaria implements ITieneUsuario{
+@Table(name = "inmobiliaria")
+public class Inmobiliaria implements ITieneUsuario {
 
     @Id
-    @Column (name ="inmobiliaria_id")
+    @Column(name = "inmobiliaria_id")
     private int inmobiliariaId;
 
     private String nombre;
@@ -60,5 +60,4 @@ public class Inmobiliaria implements ITieneUsuario{
         this.usuario = usuario;
     }
 
-    
 }

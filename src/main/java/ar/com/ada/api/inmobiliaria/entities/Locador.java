@@ -16,14 +16,14 @@ import javax.persistence.Table;
  * Locador
  */
 @Entity
-@Table (name = "locador")
+@Table(name = "locador")
 public class Locador extends Persona {
 
     @Id
-    @Column(name="locador_id")
+    @Column(name = "locador_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int locadorId;
-    @OneToMany (mappedBy = "locador", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "locador", cascade = CascadeType.ALL)
     List<Inmueble> inmuebles = new ArrayList<Inmueble>();
 
     public int getLocadorId() {

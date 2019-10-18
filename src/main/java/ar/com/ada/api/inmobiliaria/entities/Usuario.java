@@ -29,7 +29,7 @@ public class Usuario {
 
     private String email;
 
-    @OneToMany (mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<ITieneUsuario> tienenUsuario = new ArrayList<ITieneUsuario>();
 
     public int getUsuarioId() {
@@ -62,6 +62,14 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<ITieneUsuario> getTienenUsuario() {
+        return tienenUsuario;
+    }
+
+    public void setTienenUsuario(List<ITieneUsuario> tienenUsuario) {
+        this.tienenUsuario = tienenUsuario;
     }
 
 }

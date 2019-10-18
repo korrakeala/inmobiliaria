@@ -20,15 +20,15 @@ import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
  * Locatario
  */
 @Entity
-@Table (name = "locatario")
+@Table(name = "locatario")
 public class Locatario extends Persona implements ITieneUsuario {
 
     @Id
-    @Column(name="locatario_id")
+    @Column(name = "locatario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int locatarioId;
 
-    @OneToMany (mappedBy = "locatario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL)
     List<Reserva> reservas = new ArrayList<Reserva>();
 
     @ManyToOne
