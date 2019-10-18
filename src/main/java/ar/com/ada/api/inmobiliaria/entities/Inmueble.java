@@ -39,7 +39,6 @@ public class Inmueble {
     String disposicion;
     @Column (name = "cant_banios")
     int cantBanios;
-    String instalaciones; //qué onda esto en DB?
     @Column (name = "antiguedad_anios")
     int antiguedadAnios;
     // (etc)
@@ -122,14 +121,6 @@ public class Inmueble {
 
     public void setCantBanios(int cantBanios) {
         this.cantBanios = cantBanios;
-    }
-
-    public String getInstalaciones() {
-        return instalaciones;
-    }
-
-    public void setInstalaciones(String instalaciones) {
-        this.instalaciones = instalaciones;
     }
 
     public int getAntiguedadAnios() {
