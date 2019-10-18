@@ -1,6 +1,6 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,18 +24,13 @@ public class Aviso {
     @Column(name = "aviso_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int avisoId;
-
     @ManyToOne
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
     private int inmuebleId;
-
-    // @Column(name = "operacion_id")
-    // private int operacionId;
-
     @OneToOne(mappedBy = "id", cascade = CascadeType.ALL)
     private IOperable operacion;
-
-    private String tipoOperacion;
+    // private String tipoOperacion;
+    // lo saqué e hice el getter engañoso de más abajo
 
     public int getAvisoId() {
         return avisoId;
@@ -54,11 +49,7 @@ public class Aviso {
     }
 
     public String getTipoOperacion() {
-        return tipoOperacion;
-    }
-
-    public void setTipoOperacion(String tipoOperacion) {
-        this.tipoOperacion = tipoOperacion;
+        return this.operacion.getClass().getName();
     }
 
 }

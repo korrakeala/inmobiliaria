@@ -22,15 +22,12 @@ public class Alquiler implements IOperable {
     @Column(name = "alquiler_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; // cambio nombre del atributo para poder mapear IEsOperable con aviso
-
     @Column(name = "tipo_alquiler")
     private String tipoAlquiler;
     private String moneda;
     private double valor;
-
     @Column(name = "plazo_meses")
     private String plazoMeses;
-
     @OneToOne(mappedBy = "operacion", cascade = CascadeType.ALL)
     private Aviso aviso;
 
