@@ -25,5 +25,37 @@ public class Alquiler implements IOperable{
     @Column(name="plazo_alquiler")
     private String plazoAlquiler;
 
+    public int getAlquilerId() {
+        return alquilerId;
+    }
+
+    public void setAlquilerId(int alquilerId) {
+        this.alquilerId = alquilerId;
+    }
+
+    public int getOperacionId() {
+        return operacionId;
+    }
+
+    public void setOperacionId(int operacionId) {
+        this.operacionId = operacionId;
+    }
+
+    public String getTipoAlquiler() {
+        return tipoAlquiler;
+    }
+
+    public void setTipoAlquiler(String tipoAlquiler) {
+        this.tipoAlquiler = tipoAlquiler;
+    }
+
+    public String getPlazoAlquiler() {
+        return plazoAlquiler;
+    }
+
+    public void setPlazoAlquiler(String plazoAlquiler) {
+        this.plazoAlquiler = plazoAlquiler;
+    }
+
     
 }
