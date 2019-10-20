@@ -43,12 +43,12 @@ public class Inmueble {
     @Column(name = "cant_amb")
     int cantAmb;
     String direccion;
-    boolean reservado;
+    boolean reservado; // cómo convertir de boolean a char?
     // Coordenada ubicacion; (para usar API Maps a futuro)
     int superficie; // en m2
     @Column(name = "cant_dormitorio")
     int cantDormitorio;
-    @Column(name = "apto_prof")
+    @Column(name = "apto_prof") // cómo convertir de boolean a char?
     boolean aptoProf;
     String disposicion;
     @Column(name = "cant_banios")

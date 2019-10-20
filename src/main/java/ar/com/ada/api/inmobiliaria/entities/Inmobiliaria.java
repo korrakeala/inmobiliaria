@@ -58,6 +58,7 @@ public class Inmobiliaria implements ITieneUsuario {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+        this.usuario.getTienenUsuario().add(this);  // funcionará?
     }
 
 }
