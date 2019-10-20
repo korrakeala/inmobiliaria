@@ -35,7 +35,6 @@ public class InmuebleService {
         inm.setCantBanios(cantBanios);
         inm.setAntiguedadAnios(antiguedadAnios);
 
-        // falta agregar union con usuario
         loc.agregarInmueble(inm);
         inmuebleRepo.save(inm);
         return inm;
