@@ -57,6 +57,7 @@ public class Locatario extends Persona implements ITieneUsuario {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+        this.usuario.getTienenUsuario().add(this); // funcionará?
     }
 
 }

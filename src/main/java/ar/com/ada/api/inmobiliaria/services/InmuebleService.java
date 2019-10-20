@@ -11,31 +11,30 @@ import ar.com.ada.api.inmobiliaria.repo.InmuebleRepository;
  */
 @Service
 public class InmuebleService {
-    @Autowired 
-    InmuebleRepository inmuebleRepo;
 
-    public void CrearInmueble(String tipoInmueble, int cantAmb, String direccion, int superficie, int cantDormitorio, 
-    boolean aptoProf, String disposicion, int cantBanios, int antiguedadAnios){
+    @Autowired
+    InmuebleRepository repo;
 
-        Inmueble inmueble = new Inmueble ();
-        inmueble.setTipoInmueble(tipoInmueble);
-        inmueble.setCantAmb(cantAmb);
-        inmueble.setDireccion(direccion);
-        //falta agregar reservado boolean
-        inmueble.setSuperficie(superficie);
-        inmueble.setCantDormitorio(cantDormitorio);
-        inmueble.setAptoProf(aptoProf);
-        inmueble.setDisposicion(disposicion);
-        inmueble.setCantBanios(cantBanios);
-        inmueble.setAntiguedadAnios(antiguedadAnios);
-        
-        //falta agregar union con usuario
+    public Inmueble CrearInmueble(String tipoInmueble, int cantAmb, String direccion, int superficie,
+            int cantDormitorio, boolean aptoProf, String disposicion, int cantBanios, int antiguedadAnios) {
 
-        inmuebleRepo.save(inmueble);
-        return inmueble;
+        Inmueble i = new Inmueble();
+        i.setTipoInmueble(tipoInmueble);
+        i.setCantAmb(cantAmb);
+        i.setDireccion(direccion);
+        i.setReservado(false);
+        i.setSuperficie(superficie);
+        i.setCantDormitorio(cantDormitorio);
+        i.setAptoProf(aptoProf);
+        i.setDisposicion(disposicion);
+        i.setCantBanios(cantBanios);
+        i.setAntiguedadAnios(antiguedadAnios);
+
+        // falta agregar union con usuario
+
+        repo.save(i);
+        return i;
 
     }
 
-
-    
 }
