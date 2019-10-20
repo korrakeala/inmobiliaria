@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.Inmueble;
+import ar.com.ada.api.inmobiliaria.entities.Locador;
 import ar.com.ada.api.inmobiliaria.repo.InmuebleRepository;
 
 /**
@@ -11,29 +12,33 @@ import ar.com.ada.api.inmobiliaria.repo.InmuebleRepository;
  */
 @Service
 public class InmuebleService {
+    @Autowired
+    InmuebleRepository inmuebleRepo;
 
     @Autowired
-    InmuebleRepository repo;
+    LocadorService locadorService;
 
-    public Inmueble CrearInmueble(String tipoInmueble, int cantAmb, String direccion, int superficie,
+    public Inmueble CrearInmueble(int locadorId, String tipoInmueble, int cantAmb, String direccion, int superficie,
             int cantDormitorio, boolean aptoProf, String disposicion, int cantBanios, int antiguedadAnios) {
 
-        Inmueble i = new Inmueble();
-        i.setTipoInmueble(tipoInmueble);
-        i.setCantAmb(cantAmb);
-        i.setDireccion(direccion);
-        i.setReservado(false);
-        i.setSuperficie(superficie);
-        i.setCantDormitorio(cantDormitorio);
-        i.setAptoProf(aptoProf);
-        i.setDisposicion(disposicion);
-        i.setCantBanios(cantBanios);
-        i.setAntiguedadAnios(antiguedadAnios);
+        Locador loc = locadorService.buscarPorId(locadorId);
+        Inmueble inm = new Inmueble();
+
+        inm.setTipoInmueble(tipoInmueble);
+        inm.setCantAmb(cantAmb);
+        inm.setDireccion(direccion);
+        // falta agregar reservado boolean
+        inm.setSuperficie(superficie);
+        inm.setCantDormitorio(cantDormitorio);
+        inm.setAptoProf(aptoProf);
+        inm.setDisposicion(disposicion);
+        inm.setCantBanios(cantBanios);
+        inm.setAntiguedadAnios(antiguedadAnios);
 
         // falta agregar union con usuario
-
-        repo.save(i);
-        return i;
+        loc.agregarInmueble(inm);
+        inmuebleRepo.save(inm);
+        return inm;
 
     }
 

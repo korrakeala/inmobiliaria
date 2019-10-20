@@ -72,4 +72,7 @@ public class Usuario {
         this.tienenUsuario = tienenUsuario;
     }
 
+   
+    public Usuario(){
+    }
 }

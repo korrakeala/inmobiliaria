@@ -41,4 +41,14 @@ public class Locador extends Persona {
     public void setInmuebles(List<Inmueble> inmuebles) {
         this.inmuebles = inmuebles;
     }
+
+    public void agregarInmueble(Inmueble inmueble) {
+        this.inmuebles.add(inmueble);
+        inmueble.setLocador(this);
+    }
+
+    public Locador() {
+
+    }
+
 }
