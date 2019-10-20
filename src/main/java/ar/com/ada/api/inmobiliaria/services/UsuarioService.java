@@ -1,5 +1,7 @@
 package ar.com.ada.api.inmobiliaria.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,15 @@ public class UsuarioService {
         user.setPassword(password);
         user.setEmail(email);
         userRepo.save(user);
+
+    }
+
+    public Usuario buscarPorId(int id){
+        Optional<Usuario> u = userRepo.findById(id);
+        
+        if (u.isPresent())
+            return u.get();
+        return null;
 
     }
 
