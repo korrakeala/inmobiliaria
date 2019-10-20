@@ -6,6 +6,7 @@ package ar.com.ada.api.inmobiliaria.models.request;
 public class InmuebleRequest {
 
     public String tipoInmueble;
+    public int locadorId;
     public int cantAmb;
     public String direccion;
     public int superficie;
@@ -14,4 +15,5 @@ public class InmuebleRequest {
     public String disposicion;
     public int cantBanios;
     public int antiguedadAnios;
+	
 }

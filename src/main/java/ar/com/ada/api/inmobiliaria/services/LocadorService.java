@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.Locador;
-import ar.com.ada.api.inmobiliaria.entities.Usuario;
 import ar.com.ada.api.inmobiliaria.repo.LocadorRepository;
 
 /**
@@ -30,12 +29,14 @@ public class LocadorService {
         this.locadorRepo.save(locador);
     }
 
-    public void CrearLocador(String userName, String password, String email) {
-        Usuario user = new Usuario();
-        user.setUsername(userName);
-        user.setPassword(password);
-        user.setEmail(email);
-        userRepo.save(user);
+    public void CrearLocador(int locadorId,String nombre, int dni, int edad, String email) {
+        Locador loc = new Locador();
+        loc.setLocadorId(locadorId);
+        loc.setNombre(nombre);
+        loc.setDni(dni);
+        loc.setEdad(edad);
+        loc.setEmail(email);
+        locadorRepo.save(loc);
 
     }
 

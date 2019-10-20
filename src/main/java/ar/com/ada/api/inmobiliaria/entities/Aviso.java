@@ -26,7 +26,7 @@ public class Aviso {
     private int avisoId;
     @ManyToOne
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
-    private int inmuebleId;
+    private Inmueble inmueble;
     @OneToOne(mappedBy = "id", cascade = CascadeType.ALL)
     private IOperable operacion;
     // private String tipoOperacion;
@@ -40,16 +40,16 @@ public class Aviso {
         this.avisoId = avisoId;
     }
 
-    public int getInmuebleId() {
-        return inmuebleId;
-    }
-
-    public void setInmuebleId(int inmuebleId) {
-        this.inmuebleId = inmuebleId;
-    }
-
     public String getTipoOperacion() {
         return this.operacion.getClass().getName();
+    }
+
+    public Inmueble getInmueble() {
+        return inmueble;
+    }
+
+    public void setInmueble(Inmueble inmueble) {
+        this.inmueble = inmueble;
     }
 
 }
