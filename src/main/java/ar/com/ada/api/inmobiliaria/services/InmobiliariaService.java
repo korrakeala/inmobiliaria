@@ -20,7 +20,7 @@ public class InmobiliariaService {
     @Autowired
     InmobiliariaRepository repo;
     @Autowired
-    LocadorRepository lrepo;
+    LocadorService ls;
     @Autowired
     UsuarioService us;
 
@@ -74,7 +74,7 @@ public class InmobiliariaService {
         loc.setDni(dni);
         loc.setEdad(edad);
         loc.setEmail(email);
-        lrepo.save(loc);
+        ls.grabar(loc);
         return loc;
 
     }
