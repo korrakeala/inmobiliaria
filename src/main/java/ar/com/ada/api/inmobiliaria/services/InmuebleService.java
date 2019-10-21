@@ -19,7 +19,7 @@ public class InmuebleService {
     LocadorService ls;
 
     public Inmueble CrearInmueble(int locadorId, String tipoInmueble, int cantAmb, String direccion, int superficie,
-            int cantDormitorio, boolean aptoProf, String disposicion, int cantBanios, int antiguedadAnios) {
+            int cantDormitorio, char aptoProf, String disposicion, int cantBanios, int antiguedadAnios) {
 
         Locador loc = ls.buscarPorId(locadorId);
         Inmueble i = new Inmueble();

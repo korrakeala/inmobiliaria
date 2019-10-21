@@ -11,7 +11,7 @@ public class InmuebleRequest {
     public String direccion;
     public int superficie;
     public int cantDormitorio;
-    public boolean aptoProf;
+    public char aptoProf;
     public String disposicion;
     public int cantBanios;
     public int antiguedadAnios;

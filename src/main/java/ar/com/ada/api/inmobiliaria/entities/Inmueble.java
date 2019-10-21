@@ -42,13 +42,15 @@ public class Inmueble {
     @Column(name = "cant_amb")
     int cantAmb;
     String direccion;
-    boolean reservado = false; // cómo convertir de boolean a char?
+    char reservado = 'n';
+    //boolean reservado = false; // cómo convertir de boolean a char?
     // Coordenada ubicacion; (para usar API Maps a futuro)
     int superficie; // en m2
     @Column(name = "cant_dormitorio")
     int cantDormitorio;
     @Column(name = "apto_prof") // cómo convertir de boolean a char?
-    boolean aptoProf;
+    char aptoProf;
+    //boolean aptoProf;
     String disposicion;
     @Column(name = "cant_banios")
     int cantBanios;
@@ -88,14 +90,6 @@ public class Inmueble {
         this.direccion = direccion;
     }
 
-    public boolean isReservado() {
-        return reservado;
-    }
-
-    public void setReservado(boolean reservado) {
-        this.reservado = reservado;
-    }
-
     public int getSuperficie() {
         return superficie;
     }
@@ -110,14 +104,6 @@ public class Inmueble {
 
     public void setCantDormitorio(int cantDormitorio) {
         this.cantDormitorio = cantDormitorio;
-    }
-
-    public boolean isAptoProf() {
-        return aptoProf;
-    }
-
-    public void setAptoProf(boolean aptoProf) {
-        this.aptoProf = aptoProf;
     }
 
     public String getDisposicion() {
@@ -166,5 +152,21 @@ public class Inmueble {
 
     public void setCantAmb(int cantAmb) {
         this.cantAmb = cantAmb;
+    }
+
+    public char getReservado() {
+        return reservado;
+    }
+
+    public void setReservado(char reservado) {
+        this.reservado = reservado;
+    }
+
+    public char getAptoProf() {
+        return aptoProf;
+    }
+
+    public void setAptoProf(char aptoProf) {
+        this.aptoProf = aptoProf;
     }
 }

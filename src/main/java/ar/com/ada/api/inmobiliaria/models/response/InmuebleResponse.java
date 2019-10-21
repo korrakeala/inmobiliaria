@@ -7,4 +7,5 @@ public class InmuebleResponse {
 
     public boolean isOk = false;
     public String message = "";
+    public int inmuebleId;
 }

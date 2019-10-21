@@ -33,9 +33,9 @@ public class UsuarioService {
 
     }
 
-    public Usuario buscarPorId(int id){
+    public Usuario buscarPorId(int id) {
         Optional<Usuario> u = repo.findById(id);
-        
+
         if (u.isPresent())
             return u.get();
         return null;
@@ -45,12 +45,13 @@ public class UsuarioService {
     public Usuario updateUsuario(int id, String userName, String email) {
         Usuario u = new Usuario();
         u.setEmail(email);
-         u.setUsername(u.getEmail());
-       userRepo.save(u);
+        u.setUsername(userName);
+        u.setEmail(email);
+        repo.save(u);
         return u;
     }
 
-    public List<Usuario> listarUsuarios(){
-        return userRepo.findAll();
+    public List<Usuario> listarUsuarios() {
+        return repo.findAll();
     }
 }
