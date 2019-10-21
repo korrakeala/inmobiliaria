@@ -97,4 +97,6 @@ public class Usuario implements ITieneUsuario {
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
+
+
 }
