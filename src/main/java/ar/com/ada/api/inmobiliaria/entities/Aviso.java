@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import ar.com.ada.api.inmobiliaria.interfaces.IOperable;
 
@@ -28,6 +29,13 @@ public class Aviso {
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
     private Inmueble inmueble;
     @OneToOne(mappedBy = "aviso", cascade = CascadeType.ALL)
+    private Reserva reserva;
+    @OneToOne(mappedBy = "aviso", cascade = CascadeType.ALL)
+    private Venta venta;
+    @OneToOne(mappedBy = "aviso", cascade = CascadeType.ALL)
+    private Alquiler alquiler;
+    
+    @Transient
     private IOperable operacion;
     // private String tipoOperacion;
     // lo saqué e hice el getter engañoso de más abajo

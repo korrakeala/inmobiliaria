@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
@@ -26,21 +26,21 @@ public class Locatario extends Persona implements ITieneUsuario {
     @Id
     @Column(name = "locatario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int locatarioId;
+    private int id; // cambio nombre del atributo para poder mapear ITieneUsuario con Usuario
 
     @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL)
-    List<Reserva> reservas = new ArrayList<Reserva>();
+    private List<Reserva> reservas = new ArrayList<Reserva>();
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
-    Usuario usuario;
+    private Usuario usuario;
 
     public int getLocatarioId() {
-        return locatarioId;
+        return id;
     }
 
     public void setLocatarioId(int locatarioId) {
-        this.locatarioId = locatarioId;
+        this.id = locatarioId;
     }
 
     public List<Reserva> getReservas() {
@@ -57,7 +57,6 @@ public class Locatario extends Persona implements ITieneUsuario {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-        this.usuario.getTienenUsuario().add(this); // funcionará?
     }
 
 }
