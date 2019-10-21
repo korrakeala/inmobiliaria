@@ -1,6 +1,5 @@
 package ar.com.ada.api.inmobiliaria.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.Inmueble;
-import ar.com.ada.api.inmobiliaria.entities.Locador;
+import ar.com.ada.api.inmobiliaria.entities.Persona;
 import ar.com.ada.api.inmobiliaria.models.request.InmuebleRequest;
 import ar.com.ada.api.inmobiliaria.models.response.InmuebleResponse;
 import ar.com.ada.api.inmobiliaria.services.InmuebleService;
@@ -47,5 +46,13 @@ public class InmuebleController {
 
         return li;
      }
+
+    @GetMapping("/inmuebles/{id}")
+    public Inmueble getInmuebleById(@PathVariable int id)
+    {
+        Inmueble in = is.buscarPorId(id);
+        
+        return in;
+    }
 
 }
