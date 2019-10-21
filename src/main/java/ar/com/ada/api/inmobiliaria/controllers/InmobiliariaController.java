@@ -7,17 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.Locador;
 import ar.com.ada.api.inmobiliaria.models.request.InmobiliariaRequest;
-import ar.com.ada.api.inmobiliaria.models.request.InmuebleRequest;
 import ar.com.ada.api.inmobiliaria.models.request.LocadorRequest;
 import ar.com.ada.api.inmobiliaria.models.response.InmobiliariaResponse;
-import ar.com.ada.api.inmobiliaria.models.response.InmuebleResponse;
 import ar.com.ada.api.inmobiliaria.models.response.LocadorResponse;
 import ar.com.ada.api.inmobiliaria.services.InmobiliariaService;
 import ar.com.ada.api.inmobiliaria.services.LocadorService;
 
-/**
- * InmobiliariaController
- */
 @RestController
 public class InmobiliariaController {
 
@@ -41,6 +36,7 @@ public class InmobiliariaController {
 
     }
 
+
     @PostMapping("/inmobiliarias")
     public InmobiliariaResponse postCrearInmobiliaria(@RequestBody InmobiliariaRequest req){
         InmobiliariaResponse r = new InmobiliariaResponse();
@@ -52,7 +48,6 @@ public class InmobiliariaController {
         r.inmobiliariaId = inmobiliariaId;
         return r; 
     }
-
 
 
     
