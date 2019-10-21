@@ -3,23 +3,18 @@ package ar.com.ada.api.inmobiliaria.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 
 /**
  * Locador
  */
 @Entity
 @Table(name = "locador")
-public class Locador extends Persona {
+public class Locador extends Persona implements ITieneUsuario {
 
     @Id
     @Column(name = "locador_id")
@@ -28,6 +23,11 @@ public class Locador extends Persona {
     @JsonIgnore
     @OneToMany(mappedBy = "locador", cascade = CascadeType.ALL)
     List<Inmueble> inmuebles = new ArrayList<Inmueble>();
+    
+    @Transient
+    private String tipoUsuario = "Inmobiliaria";
+
+
 
     public int getLocadorId() {
         return locadorId;
