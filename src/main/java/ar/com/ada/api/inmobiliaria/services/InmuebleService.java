@@ -13,31 +13,30 @@ import ar.com.ada.api.inmobiliaria.repo.InmuebleRepository;
 @Service
 public class InmuebleService {
     @Autowired
-    InmuebleRepository inmuebleRepo;
+    InmuebleRepository repo;
 
     @Autowired
-    LocadorService locadorService;
+    LocadorService ls;
 
     public Inmueble CrearInmueble(int locadorId, String tipoInmueble, int cantAmb, String direccion, int superficie,
             int cantDormitorio, boolean aptoProf, String disposicion, int cantBanios, int antiguedadAnios) {
 
-        Locador loc = locadorService.buscarPorId(locadorId);
-        Inmueble inm = new Inmueble();
+        Locador loc = ls.buscarPorId(locadorId);
+        Inmueble i = new Inmueble();
 
-        inm.setTipoInmueble(tipoInmueble);
-        inm.setCantAmb(cantAmb);
-        inm.setDireccion(direccion);
-        // falta agregar reservado boolean
-        inm.setSuperficie(superficie);
-        inm.setCantDormitorio(cantDormitorio);
-        inm.setAptoProf(aptoProf);
-        inm.setDisposicion(disposicion);
-        inm.setCantBanios(cantBanios);
-        inm.setAntiguedadAnios(antiguedadAnios);
+        i.setTipoInmueble(tipoInmueble);
+        i.setCantAmb(cantAmb);
+        i.setDireccion(direccion);
+        i.setSuperficie(superficie);
+        i.setCantDormitorio(cantDormitorio);
+        i.setAptoProf(aptoProf);
+        i.setDisposicion(disposicion);
+        i.setCantBanios(cantBanios);
+        i.setAntiguedadAnios(antiguedadAnios);
 
-        loc.agregarInmueble(inm);
-        inmuebleRepo.save(inm);
-        return inm;
+        loc.agregarInmueble(i);
+        repo.save(i);
+        return i;
 
     }
 

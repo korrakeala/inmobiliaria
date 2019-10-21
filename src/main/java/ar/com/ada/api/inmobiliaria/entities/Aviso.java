@@ -27,7 +27,7 @@ public class Aviso {
     @ManyToOne
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
     private Inmueble inmueble;
-    @OneToOne(mappedBy = "id", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "aviso", cascade = CascadeType.ALL)
     private IOperable operacion;
     // private String tipoOperacion;
     // lo saqué e hice el getter engañoso de más abajo

@@ -2,7 +2,6 @@ package ar.com.ada.api.inmobiliaria.entities;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,10 +32,12 @@ public class Reserva implements IOperable {
     @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
     private Locatario locatario;
 
-    @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name= "inmueble_id", referencedColumnName = "inmueble_id")
     private Inmueble inmueble;
 
-    @OneToOne(mappedBy = "operacion", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name= "aviso_id", referencedColumnName = "aviso_id")
     private Aviso aviso;
 
     public Date getFecha() {

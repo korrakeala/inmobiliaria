@@ -34,8 +34,7 @@ public class Inmueble {
     @OneToMany(mappedBy = "inmueble", cascade = CascadeType.ALL)
     List<Aviso> avisos = new ArrayList<Aviso>();
 
-    @OneToOne
-    @JoinColumn(name = "reserva_id", referencedColumnName = "reserva_id")
+    @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL)
     private Reserva reserva;
 
     @Column(name = "tipo_inmueble")
