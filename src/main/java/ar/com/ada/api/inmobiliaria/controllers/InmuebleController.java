@@ -19,7 +19,7 @@ public class InmuebleController {
     InmuebleService is;
 
     @PostMapping("/inmuebles")
-    public InmuebleResponse postRegisterinmueble(@RequestBody InmuebleRequest req) {
+    public InmuebleResponse postRegisterInmueble(@RequestBody InmuebleRequest req) {
 
         Inmueble i = is.CrearInmueble(req.locadorId, req.tipoInmueble, req.cantAmb, req.direccion, req.superficie,
                 req.cantDormitorio, req.aptoProf, req.disposicion, req.cantBanios, req.antiguedadAnios);

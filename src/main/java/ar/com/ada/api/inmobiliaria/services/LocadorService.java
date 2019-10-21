@@ -12,10 +12,10 @@ import ar.com.ada.api.inmobiliaria.repo.LocadorRepository;
 @Service
 public class LocadorService {
     @Autowired
-    LocadorRepository locadorRepo;
+    LocadorRepository repo;
     
     public Locador buscarPorId(int id){
-        Optional<Locador> l = locadorRepo.findById(id);
+        Optional<Locador> l = repo.findById(id);
         
         if (l.isPresent())
             return l.get();
@@ -24,7 +24,7 @@ public class LocadorService {
     }
 
      public void grabar(Locador locador) {
-        this.locadorRepo.save(locador);
+        this.repo.save(locador);
     }
 
 

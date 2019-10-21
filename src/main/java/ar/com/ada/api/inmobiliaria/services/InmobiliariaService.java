@@ -20,12 +20,12 @@ public class InmobiliariaService {
     @Autowired
     InmobiliariaRepository repo;
     @Autowired
-    LocadorRepository lrepo;
+    LocadorService ls;
     @Autowired
     UsuarioService us;
 
-    public void grabar(Inmobiliaria inmboliaria) {
-        this.repo.save(inmboliaria);
+    public void grabar(Inmobiliaria inmobiliaria) {
+        this.repo.save(inmobiliaria);
     }
 
     public void crearInmobiliaria(String cuil, int inmobiliariaId, String nombre, String email) {
@@ -65,14 +65,15 @@ public class InmobiliariaService {
     
 
 
-    public void CrearLocador(int locadorId,String nombre, int dni, int edad, String email) {
+    public Locador crearLocador(String nombre, int dni, int edad, String email) {
         Locador loc = new Locador();
-        loc.setLocadorId(locadorId);
         loc.setNombre(nombre);
         loc.setDni(dni);
         loc.setEdad(edad);
         loc.setEmail(email);
-        lrepo.save(loc);
+        ls.grabar(loc);
+
+        return loc;
 
     }
 
