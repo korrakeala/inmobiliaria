@@ -27,7 +27,7 @@ public class UsuarioService {
         u.setPassword(password);
         u.setEmail(email);
         u.setUsername(u.getEmail());
-        u.setTipoUsuario(tieneUsuario.getClass().getName());
+        u.setTipoUsuario(tieneUsuario.toString());
         repo.save(u);
 
         return u;

@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 
@@ -34,6 +35,9 @@ public class Locatario extends Persona implements ITieneUsuario {
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     private Usuario usuario;
+
+    @Transient
+    private String tipoUsuario = "Locatario";
 
     public int getLocatarioId() {
         return id;
@@ -60,6 +64,11 @@ public class Locatario extends Persona implements ITieneUsuario {
     }
 
     public Locatario() {
+    }
+
+    @Override
+    public String toString() {
+        return tipoUsuario;
     }
 
 }

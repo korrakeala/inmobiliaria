@@ -1,9 +1,9 @@
 package ar.com.ada.api.inmobiliaria.models.response;
 
 /**
- * LocatarioRespose
+ * LocatarioResponse
  */
-public class LocatarioRespose {
+public class LocatarioResponse {
 
     public boolean isOk = false;
     public String message = "";
