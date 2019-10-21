@@ -1,5 +1,7 @@
 package ar.com.ada.api.inmobiliaria.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,11 @@ public class InmuebleService {
         loc.agregarInmueble(i);
         repo.save(i);
         return i;
+
+    }
+
+    public List<Inmueble> getInmuebles(){
+        return repo.findAll();
 
     }
 

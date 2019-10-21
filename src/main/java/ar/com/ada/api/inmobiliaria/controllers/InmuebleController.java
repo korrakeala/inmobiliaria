@@ -1,6 +1,9 @@
 package ar.com.ada.api.inmobiliaria.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,5 +35,12 @@ public class InmuebleController {
         return r;
 
     }
+
+    @GetMapping("/inmuebles")
+     public List<Inmueble> getInmuebles() {
+        List<Inmueble> li = is.getInmuebles();
+
+        return li;
+     }
 
 }
