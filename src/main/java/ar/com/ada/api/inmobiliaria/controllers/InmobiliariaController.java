@@ -26,7 +26,7 @@ public class InmobiliariaController {
     public LocadorResponse postRegisterLocador(@RequestBody LocadorRequest req) {
         LocadorResponse r = new LocadorResponse();
 
-        Locador l = is.crearLocador(req.nombre, req.dni, req.edad, req.email);
+        Locador l = is.CrearLocador(req.nombre, req.dni, req.edad, req.email);
 
         r.isOk = true;
         r.message = "Locador generado con éxito.";
