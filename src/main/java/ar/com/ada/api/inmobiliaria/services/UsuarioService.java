@@ -35,7 +35,6 @@ public class UsuarioService {
 
     public Usuario buscarPorId(int id) {
         Optional<Usuario> u = repo.findById(id);
-
         if (u.isPresent())
             return u.get();
         return null;
