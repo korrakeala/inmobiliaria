@@ -20,18 +20,20 @@ public class InmobiliariaService {
     @Autowired
     InmobiliariaRepository repo;
     @Autowired
-    LocadorService ls;
+    LocadorRepository lrepo;
     @Autowired
     UsuarioService us;
 
-    public void grabar(Inmobiliaria inmobiliaria) {
-        this.repo.save(inmobiliaria);
+    public void grabar(Inmobiliaria inmboliaria) {
+        this.repo.save(inmboliaria);
     }
 
     public int crearInmobiliaria(String cuil, String nombre, String email) {
         Usuario u = new Usuario();
         u.setEmail(email);
         u.setUsername(u.getEmail());
+
+        //us.crearUsuario(userName, password, email, tipoUsuario); esta seria la idea 
 
         u.getUsuarioId();
 
@@ -66,15 +68,14 @@ public class InmobiliariaService {
     
 
 
-    public Locador crearLocador(String nombre, int dni, int edad, String email) {
+    public void CrearLocador(int locadorId,String nombre, int dni, int edad, String email) {
         Locador loc = new Locador();
+        loc.setLocadorId(locadorId);
         loc.setNombre(nombre);
         loc.setDni(dni);
         loc.setEdad(edad);
         loc.setEmail(email);
-        ls.grabar(loc);
-
-        return loc;
+        lrepo.save(loc);
 
     }
 
