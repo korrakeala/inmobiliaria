@@ -1,17 +1,14 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
-import javax.persistence.MappedSuperclass;
 
-/**
- * Persona
- */
-@MappedSuperclass
+
+
 public class Persona {
 
-    private String nombre;
-    private String dni;
-    private int edad;
-    private String email;
+    String nombre;
+    String dni;
+    int edad;
+    String email;
 
     public String getNombre() {
         return nombre;
@@ -44,5 +41,4 @@ public class Persona {
     public void setDni(String dni) {
         this.dni = dni;
     }
-
 }
