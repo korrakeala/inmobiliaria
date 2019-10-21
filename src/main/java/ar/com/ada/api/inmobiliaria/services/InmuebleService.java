@@ -45,6 +45,8 @@ public class InmuebleService {
 
     }
 
+    
+
     public List<Inmueble> getInmuebles(){
         return repo.findAll();
 

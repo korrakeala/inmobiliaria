@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Locador
  */
@@ -23,6 +25,7 @@ public class Locador extends Persona {
     @Column(name = "locador_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int locadorId;
+    @JsonIgnore
     @OneToMany(mappedBy = "locador", cascade = CascadeType.ALL)
     List<Inmueble> inmuebles = new ArrayList<Inmueble>();
 
