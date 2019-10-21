@@ -14,23 +14,26 @@ import ar.com.ada.api.inmobiliaria.repo.UsuarioRepository;
 @Service
 public class UsuarioService {
     @Autowired
-    UsuarioRepository userRepo;
+    UsuarioRepository repo;
 
-    public void grabar(Usuario user) {
-        this.userRepo.save(user);
+    public void grabar(Usuario u) {
+        this.repo.save(u);
     }
 
-    public void crearUsuario(String userName, String password, String email) {
-        Usuario user = new Usuario();
-        user.setUsername(userName);
-        user.setPassword(password);
-        user.setEmail(email);
-        userRepo.save(user);
+    public Usuario crearUsuario(String userName, String password, String email, String tipoUsuario) {
+        Usuario u = new Usuario();
+        u.setUsername(userName);
+        u.setPassword(password);
+        u.setEmail(email);
+        u.setTipoUsuario(tipoUsuario);
+        repo.save(u);
+
+        return u;
 
     }
 
     public Usuario buscarPorId(int id){
-        Optional<Usuario> u = userRepo.findById(id);
+        Optional<Usuario> u = repo.findById(id);
         
         if (u.isPresent())
             return u.get();

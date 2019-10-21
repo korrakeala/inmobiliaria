@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.com.ada.api.inmobiliaria.entities.Usuario;
 import ar.com.ada.api.inmobiliaria.models.request.UsuarioRequest;
 import ar.com.ada.api.inmobiliaria.models.response.UsuarioResponse;
 import ar.com.ada.api.inmobiliaria.services.UsuarioService;
@@ -14,17 +15,20 @@ import ar.com.ada.api.inmobiliaria.services.UsuarioService;
  */
 @RestController
 public class UsuarioController {
+    
     @Autowired
     UsuarioService us;
     
     @PostMapping("/usuarios")
     public UsuarioResponse postRegUsuario(@RequestBody UsuarioRequest req){
-        us.crearUsuario(req.userName, req.password, req.email);
+        
+        Usuario u = us.crearUsuario(req.userName, req.password, req.email, req.tipoUsuario);
     
         UsuarioResponse r = new UsuarioResponse();
         r.isOk = true;
         r.message = "Usuario creado con exito";
-
+        r.usuarioId = u.getTipoUsuario();
+        
         return r;
 
     }
