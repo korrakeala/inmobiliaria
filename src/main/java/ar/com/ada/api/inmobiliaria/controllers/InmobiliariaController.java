@@ -22,7 +22,7 @@ public class InmobiliariaController {
     @Autowired
     LocadorService ls;
 
-    @PostMapping("/locadores")
+    @PostMapping("/locadores") // funciona!
     public LocadorResponse postRegisterLocador(@RequestBody LocadorRequest req) {
         LocadorResponse r = new LocadorResponse();
 
@@ -37,11 +37,11 @@ public class InmobiliariaController {
     }
 
 
-    @PostMapping("/inmobiliarias")
-    public InmobiliariaResponse postCrearInmobiliaria(@RequestBody InmobiliariaRequest req){
+    @PostMapping("/inmobiliarias") // funciona!
+    public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req){
         InmobiliariaResponse r = new InmobiliariaResponse();
 
-        int inmobiliariaId = is.crearInmobiliaria(req.cuil, req.nombre, req.email, req.password);
+        int inmobiliariaId = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password);
 
         r.isOk = true;
         r.message = "Inmobiliaria generada";

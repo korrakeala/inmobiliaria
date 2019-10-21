@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 
@@ -30,6 +31,9 @@ public class Inmobiliaria implements ITieneUsuario {
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     private Usuario usuario;
+
+    @Transient
+    private String tipoUsuario = "Inmobiliaria";
 
     public int getInmobiliariaId() {
         return id;
@@ -71,4 +75,8 @@ public class Inmobiliaria implements ITieneUsuario {
         this.cuit = cuit;
     }
 
+    @Override
+    public String toString() {
+        return tipoUsuario;
+    }
 }

@@ -7,8 +7,10 @@ public class LocatarioRequest {
 
     
     public String nombre;
-    public int dni;
+    public String dni;
     public int edad;
     public String email;
+    public String password;
+
 
 }

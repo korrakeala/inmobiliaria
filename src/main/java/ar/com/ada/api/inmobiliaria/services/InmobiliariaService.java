@@ -28,15 +28,12 @@ public class InmobiliariaService {
     }
 
     public int crearInmobiliaria(String cuit, String nombre, String email, String password) {
-        Usuario u = new Usuario();
         Inmobiliaria inmo = new Inmobiliaria();
+        Usuario u = us.crearUsuario(password, email, inmo);
         
-        us.crearUsuario(password, email, inmo);
-
-        u.getUsuarioId();
-
         inmo.setCuit(cuit);
         inmo.setNombre(nombre);
+        inmo.setUsuario(u);
         repo.save(inmo);
 
         return inmo.getInmobiliariaId();
