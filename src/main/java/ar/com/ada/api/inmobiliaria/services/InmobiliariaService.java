@@ -28,7 +28,7 @@ public class InmobiliariaService {
         this.repo.save(inmboliaria);
     }
 
-    public void crearInmobiliaria(String cuil, int inmobiliariaId, String nombre, String email) {
+    public int crearInmobiliaria(String cuil, String nombre, String email) {
         Usuario u = new Usuario();
         u.setEmail(email);
         u.setUsername(u.getEmail());
@@ -37,12 +37,13 @@ public class InmobiliariaService {
 
         Inmobiliaria inmo = new Inmobiliaria();
         inmo.setCuil(cuil);
-        inmo.setInmobiliariaId(inmobiliariaId);
         inmo.setNombre(nombre);
 
         u.setTipoUsuario(inmo);
 
         repo.save(inmo);
+
+        return inmo.getInmobiliariaId();
 
     }
 
