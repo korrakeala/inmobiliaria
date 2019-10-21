@@ -16,6 +16,9 @@ public class InmuebleService {
     InmuebleRepository repo;
 
     @Autowired
+    InmobiliariaService is;
+
+    @Autowired
     LocadorService ls;
 
     public Inmueble CrearInmueble(int locadorId, String tipoInmueble, int cantAmb, String direccion, int superficie,

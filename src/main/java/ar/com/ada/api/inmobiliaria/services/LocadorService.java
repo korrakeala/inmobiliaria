@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import ar.com.ada.api.inmobiliaria.entities.Locador;
 import ar.com.ada.api.inmobiliaria.repo.LocadorRepository;
 
-/**
- * LocadorService
- */
+
 @Service
 public class LocadorService {
     @Autowired
@@ -29,16 +27,7 @@ public class LocadorService {
         this.locadorRepo.save(locador);
     }
 
-    public void CrearLocador(int locadorId,String nombre, int dni, int edad, String email) {
-        Locador loc = new Locador();
-        loc.setLocadorId(locadorId);
-        loc.setNombre(nombre);
-        loc.setDni(dni);
-        loc.setEdad(edad);
-        loc.setEmail(email);
-        locadorRepo.save(loc);
 
-    }
 
     
 }

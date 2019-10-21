@@ -1,6 +1,5 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
-import javax.persistence.*;
 
 /**
  * Persona
