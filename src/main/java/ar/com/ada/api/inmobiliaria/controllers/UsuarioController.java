@@ -22,10 +22,10 @@ public class UsuarioController {
     @Autowired
     UsuarioService us;
 
-    @PostMapping("/usuarios")
+    /*@PostMapping("/usuarios") Locatario e Inmobiliaria crean cada uno su respectivo usuario
     public UsuarioResponse postRegUsuario(@RequestBody UsuarioRequest req){
         
-        Usuario u = us.crearUsuario(req.userName, req.password, req.email, req.tipoUsuario);
+        Usuario u = us.crearUsuario(req.password, req.email, req.tipoUsuario);
     
         UsuarioResponse r = new UsuarioResponse();
         r.isOk = true;
@@ -34,7 +34,7 @@ public class UsuarioController {
         
         return r;
 
-    }
+    }*/
 
     @GetMapping("/usuarios")
     public List<Usuario> getUsuarios() {

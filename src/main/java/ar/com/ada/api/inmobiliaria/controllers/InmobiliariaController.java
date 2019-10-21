@@ -64,7 +64,7 @@ public class InmobiliariaController {
     public InmobiliariaResponse postCrearInmobiliaria(@RequestBody InmobiliariaRequest req){
         InmobiliariaResponse r = new InmobiliariaResponse();
 
-        int inmobiliariaId = is.crearInmobiliaria(req.cuil, req.nombre, req.email);
+        int inmobiliariaId = is.crearInmobiliaria(req.cuil, req.nombre, req.email, req.password);
 
         r.isOk = true;
         r.message = "Inmobiliaria generada";
