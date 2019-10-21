@@ -59,4 +59,7 @@ public class Locatario extends Persona implements ITieneUsuario {
         this.usuario = usuario;
     }
 
+    public Locatario() {
+    }
+
 }
