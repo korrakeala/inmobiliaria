@@ -35,7 +35,6 @@ public class UsuarioService {
 
     public Usuario buscarPorId(int id){
         Optional<Usuario> u = repo.findById(id);
-        
         if (u.isPresent())
             return u.get();
         return null;
@@ -46,11 +45,11 @@ public class UsuarioService {
         Usuario u = new Usuario();
         u.setEmail(email);
          u.setUsername(u.getEmail());
-       userRepo.save(u);
+       repo.save(u);
         return u;
     }
 
     public List<Usuario> listarUsuarios(){
-        return userRepo.findAll();
+        return repo.findAll();
     }
 }
