@@ -20,7 +20,7 @@ public class UsuarioService {
         this.userRepo.save(user);
     }
 
-    public void CrearUser(String userName, String password, String email) {
+    public void crearUsuario(String userName, String password, String email) {
         Usuario user = new Usuario();
         user.setUsername(userName);
         user.setPassword(password);
