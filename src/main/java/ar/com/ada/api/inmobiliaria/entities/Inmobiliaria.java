@@ -25,7 +25,7 @@ public class Inmobiliaria implements ITieneUsuario {
 
     private String nombre;
 
-    private String cuil;
+    private String cuit;
 
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
@@ -46,21 +46,29 @@ public class Inmobiliaria implements ITieneUsuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getCuil() {
-        return cuil;
-    }
-
-    public void setCuil(String cuil) {
-        this.cuil = cuil;
-    }
-
+    
     public Usuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCuit() {
+        return cuit;
+    }
+
+    public void setCuit(String cuit) {
+        this.cuit = cuit;
     }
 
 }

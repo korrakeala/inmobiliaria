@@ -6,6 +6,7 @@ public class InmobiliariaRequest {
     public String nombre;
     public String userName;
     public String email;
+    public String password;
 
 
 

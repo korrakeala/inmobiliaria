@@ -9,7 +9,6 @@ import ar.com.ada.api.inmobiliaria.entities.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.Locador;
 import ar.com.ada.api.inmobiliaria.entities.Usuario;
 import ar.com.ada.api.inmobiliaria.repo.InmobiliariaRepository;
-import ar.com.ada.api.inmobiliaria.repo.LocadorRepository;
 
 /**
  * InmobiliariaService
@@ -28,21 +27,16 @@ public class InmobiliariaService {
         this.repo.save(inmboliaria);
     }
 
-    public int crearInmobiliaria(String cuil, String nombre, String email) {
+    public int crearInmobiliaria(String cuit, String nombre, String email, String password) {
         Usuario u = new Usuario();
-        u.setEmail(email);
-        u.setUsername(u.getEmail());
-
-        //us.crearUsuario(userName, password, email, tipoUsuario); esta seria la idea 
+        Inmobiliaria inmo = new Inmobiliaria();
+        
+        us.crearUsuario(password, email, inmo);
 
         u.getUsuarioId();
 
-        Inmobiliaria inmo = new Inmobiliaria();
-        inmo.setCuil(cuil);
+        inmo.setCuit(cuit);
         inmo.setNombre(nombre);
-
-        u.setTipoUsuario(inmo);
-
         repo.save(inmo);
 
         return inmo.getInmobiliariaId();
@@ -58,9 +52,9 @@ public class InmobiliariaService {
 
     }
 
-    public Inmobiliaria updateInmobiliaria(String cuil, String nombre) {
+    public Inmobiliaria updateInmobiliaria(String cuit, String nombre) {
         Inmobiliaria i = new Inmobiliaria();
-        i.setCuil(cuil);
+        i.setCuit(cuit);
         i.setNombre(nombre);
         repo.save(i);
         return i;
