@@ -1,5 +1,6 @@
 package ar.com.ada.api.inmobiliaria.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,15 @@ public class UsuarioService {
 
     }
 
+    public Usuario updateUsuario(int id, String userName, String email) {
+        Usuario u = new Usuario();
+        u.setEmail(email);
+         u.setUsername(u.getEmail());
+       userRepo.save(u);
+        return u;
+    }
+
+    public List<Usuario> listarUsuarios(){
+        return userRepo.findAll();
+    }
 }

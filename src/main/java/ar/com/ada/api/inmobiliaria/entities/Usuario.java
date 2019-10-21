@@ -16,7 +16,7 @@ import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements ITieneUsuario {
 
     @Id
     @Column(name = "usuario_id")

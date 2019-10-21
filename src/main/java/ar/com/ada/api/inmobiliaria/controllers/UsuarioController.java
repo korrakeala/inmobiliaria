@@ -1,10 +1,15 @@
 package ar.com.ada.api.inmobiliaria.controllers;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.com.ada.api.inmobiliaria.entities.Usuario;
+import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 import ar.com.ada.api.inmobiliaria.models.request.UsuarioRequest;
 import ar.com.ada.api.inmobiliaria.models.response.UsuarioResponse;
 import ar.com.ada.api.inmobiliaria.services.UsuarioService;
@@ -13,14 +18,14 @@ import ar.com.ada.api.inmobiliaria.services.UsuarioService;
  * UsuarioController
  */
 @RestController
-public class UsuarioController {
+public class UsuarioController implements ITieneUsuario {
     @Autowired
     UsuarioService us;
-    
+
     @PostMapping("/usuarios")
-    public UsuarioResponse postRegUsuario(@RequestBody UsuarioRequest req){
+    public UsuarioResponse postRegUsuario(@RequestBody UsuarioRequest req) {
         us.crearUsuario(req.userName, req.password, req.email);
-    
+
         UsuarioResponse r = new UsuarioResponse();
         r.isOk = true;
         r.message = "Usuario creado con exito";
@@ -28,5 +33,14 @@ public class UsuarioController {
         return r;
 
     }
-    
+
+    @GetMapping("/usuarios")
+    public List<Usuario> getUsuarios() {
+
+        List<Usuario> usuarios = us.listarUsuarios();
+
+        return usuarios;
+
+    }
+
 }
