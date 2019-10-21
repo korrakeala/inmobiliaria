@@ -1,15 +1,12 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
@@ -29,8 +26,11 @@ public class Usuario implements ITieneUsuario {
 
     private String email;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<ITieneUsuario> tienenUsuario = new ArrayList<ITieneUsuario>();
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Locatario locatario;
+
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Inmobiliaria inmobiliaria;
 
     public int getUsuarioId() {
         return usuarioId;
@@ -63,15 +63,6 @@ public class Usuario implements ITieneUsuario {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public List<ITieneUsuario> getTienenUsuario() {
-        return tienenUsuario;
-    }
-
-    public void setTienenUsuario(List<ITieneUsuario> tienenUsuario) {
-        this.tienenUsuario = tienenUsuario;
-    }
-
    
     public Usuario(){
     }
