@@ -7,7 +7,7 @@ package ar.com.ada.api.inmobiliaria.entities;
 public class Persona {
 
     String nombre;
-    int dni;
+    String dni;
     int edad;
     String email;
 
@@ -17,14 +17,6 @@ public class Persona {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getDni() {
-        return dni;
-    }
-
-    public void setDni(int dni) {
-        this.dni = dni;
     }
 
     public int getEdad() {
@@ -41,5 +33,13 @@ public class Persona {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 }

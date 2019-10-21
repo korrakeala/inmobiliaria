@@ -68,7 +68,7 @@ public class InmobiliariaService {
     
 
 
-    public Locador crearLocador(String nombre, int dni, int edad, String email) {
+    public Locador crearLocador(String nombre, String dni, int edad, String email) {
         Locador loc = new Locador();
         loc.setNombre(nombre);
         loc.setDni(dni);

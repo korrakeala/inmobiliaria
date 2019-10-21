@@ -6,7 +6,7 @@ package ar.com.ada.api.inmobiliaria.models.request;
 public class LocadorRequest {
 
     public String nombre;
-    public int dni;
+    public String dni;
     public int edad;
     public String email;
 }
