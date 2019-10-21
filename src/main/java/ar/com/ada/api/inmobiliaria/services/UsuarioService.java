@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.Usuario;
+import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 import ar.com.ada.api.inmobiliaria.repo.UsuarioRepository;
 
 /**
@@ -21,12 +22,12 @@ public class UsuarioService {
         this.repo.save(u);
     }
 
-    public Usuario crearUsuario(String userName, String password, String email, String tipoUsuario) {
+    public Usuario crearUsuario(String password, String email, ITieneUsuario tieneUsuario) {
         Usuario u = new Usuario();
-        u.setUsername(userName);
         u.setPassword(password);
         u.setEmail(email);
-        u.setTipoUsuario(tipoUsuario);
+        u.setUsername(u.getEmail());
+        u.setTipoUsuario(tieneUsuario.getClass().getName());
         repo.save(u);
 
         return u;
