@@ -1,7 +1,11 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
 
+import javax.persistence.MappedSuperclass;
 
+
+
+@MappedSuperclass
 
 public class Persona {
 
