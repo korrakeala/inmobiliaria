@@ -1,12 +1,14 @@
 package ar.com.ada.api.inmobiliaria.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.Alquiler;
-import ar.com.ada.api.inmobiliaria.entities.Venta;
+import ar.com.ada.api.inmobiliaria.entities.Aviso;
 import ar.com.ada.api.inmobiliaria.repo.AlquilerRepository;
-import java.util.*;
 
 /**
  * AlquilerService
@@ -30,4 +32,10 @@ public class AlquilerService {
             return a.get();
         return null;
     }
+
+        
+    public List<Alquiler> listarAlquileres() {
+        return repo.findAll();
+    }
+
 }

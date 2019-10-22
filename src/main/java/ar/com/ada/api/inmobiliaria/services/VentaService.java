@@ -1,10 +1,12 @@
 package ar.com.ada.api.inmobiliaria.services;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.inmobiliaria.entities.Aviso;
 import ar.com.ada.api.inmobiliaria.entities.Venta;
 import ar.com.ada.api.inmobiliaria.repo.VentaRepository;
 
@@ -32,5 +34,12 @@ public class VentaService {
         return null;
 
     }
+
+
+        
+    public List<Venta> listarVentas() {
+        return repo.findAll();
+    }
+
 }
    
