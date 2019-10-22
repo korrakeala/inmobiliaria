@@ -29,7 +29,7 @@ public class InmuebleController {
     @Autowired
     ReservaService rs;
 
-    @PostMapping("/inmuebles")
+    @PostMapping("/inmuebles") /** funciona! */
     public InmuebleResponse postRegisterInmueble(@RequestBody InmuebleRequest req) {
 
         Inmueble i = is.CrearInmueble(req.locadorId, req.tipoInmueble, req.cantAmb, req.direccion, req.superficie,
@@ -44,52 +44,44 @@ public class InmuebleController {
 
     }
 
-
-
-    @GetMapping("/inmuebles")
-     public List<Inmueble> getInmuebles() {
+    @GetMapping("/inmuebles") /** funciona! */
+    public List<Inmueble> getInmuebles() {
         List<Inmueble> li = is.getInmuebles();
 
         return li;
-     }
+    }
 
-    @GetMapping("/inmuebles/{id}")
-    public Inmueble getInmuebleById(@PathVariable int id)
-    {
+    @GetMapping("/inmuebles/{id}") /** funciona! */
+    public Inmueble getInmuebleById(@PathVariable int id) {
         Inmueble in = is.buscarPorId(id);
-        
+
         return in;
     }
 
-    @GetMapping("/inmuebles/reservas")
-    public List<Reserva> getReservas(){
-        List<Reserva> r =rs.listarInmueblesReservados();
+    @GetMapping("/inmuebles/reservas") /** funciona! */
+    public List<Reserva> getReservas() {
+        List<Reserva> r = rs.listarInmueblesReservados();
 
         return r;
     }
-
 
     @GetMapping("/inmuebles/reservas/{id}")
-    public Reserva getReservaById(@PathVariable int id)
-    {
+    public Reserva getReservaById(@PathVariable int id) {
         Reserva r = rs.buscarPorId(id);
-        
+
         return r;
     }
 
-
-    @PutMapping("/inmuebles/reservas/{id}")
+    @PutMapping("/inmuebles/reservas/{id}")//* falta aplicar IOperable, pero no sé como aplicarlo, así que no funciona
     public ReservarInmuebleResponse updateInmueble(@PathVariable int id, @RequestBody ReservarInmuebleRequest req) {
         ReservarInmuebleResponse r = new ReservarInmuebleResponse();
 
-        Inmueble i = is.updateInmueble(id, req.reservado);
+        Inmueble i = is.updateInmueble( req.inmuebleId, req.reservado);
 
         r.isOk = true;
         r.message = "Inmueble" + req.inmuebleId + "¡actualizado con éxito!";
         r.reservaId = id;
         return r;
     }
-
-
 
 }

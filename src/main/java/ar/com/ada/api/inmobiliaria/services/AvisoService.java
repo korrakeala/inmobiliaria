@@ -38,7 +38,7 @@ public class AvisoService {
 
     }
 
-    /**public void crearAviso(String tipoAlquiler,String moneda,double valor,String plazoMeses,IOperable tipoOperacion,Inmueble inmueble){
+    /**public void crearAviso(IOperable tipoOperacion,Inmueble inmueble){
 
         Aviso av = new Aviso();
 

@@ -61,7 +61,7 @@ public class InmuebleService {
             return in.get();
         return null;
     }
-
+//* falta aplicar IOperable, pero no sé como aplicarlo
     public Inmueble updateInmueble(int inmuebleId,char reservado) {
         Inmueble i = new Inmueble();
 

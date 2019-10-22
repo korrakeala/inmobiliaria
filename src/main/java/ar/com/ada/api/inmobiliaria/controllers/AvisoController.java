@@ -28,14 +28,14 @@ public class AvisoController {
     VentaService vs;
 
 
-    @GetMapping("/avisos")
+    @GetMapping("/avisos") /**funciona! */
      public List<Aviso> getAvisos() {
         List<Aviso> av = as.listarAvisos();
 
         return av;
      }
 
-    @GetMapping("/avisos/{id}")
+    @GetMapping("/avisos/{id}") 
     public Aviso getAvisoById(@PathVariable int id)
     {
         Aviso av = as.buscarPorId(id);
@@ -43,7 +43,7 @@ public class AvisoController {
         return av;
     }
 
-    @GetMapping("/avisos/alquileres")
+    @GetMapping("/avisos/alquileres") /**funciona! */
      public List<Alquiler> getAlquileres() {
         List<Alquiler> al = als.listarAlquileres();
 
@@ -51,7 +51,7 @@ public class AvisoController {
      }
 
 
-    @GetMapping("/avisos/alquileres/{id}")
+    @GetMapping("/avisos/alquileres/{id}") 
 
     public Alquiler getAlquilerById(@PathVariable int id)
     {
@@ -60,7 +60,7 @@ public class AvisoController {
         return al;
     }
 
-    @GetMapping("/avisos/ventas")
+    @GetMapping("/avisos/ventas")  /**funciona! */
 
       public List<Venta> getVentas() {
         List<Venta> v = vs.listarVentas();

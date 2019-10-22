@@ -1,5 +1,7 @@
 package ar.com.ada.api.inmobiliaria.models.request;
 
+import java.util.Date;
+
 /**
  * LocatarioRequest
  */
@@ -11,6 +13,8 @@ public class LocatarioRequest {
     public int edad;
     public String email;
     public String password;
+    public String estadoUsuario;
+    public Date fechaAltaUsuario;
 
 
 }

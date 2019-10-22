@@ -1,5 +1,6 @@
 package ar.com.ada.api.inmobiliaria.services;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class InmobiliariaService {
         this.repo.save(inmboliaria);
     }
 
-    public int crearInmobiliaria(String cuit, String nombre, String email, String password) {
+    public int crearInmobiliaria(String cuit, String nombre, String email, String password, String estadoUsuario, Date fechaAltaUsuario) {
         Inmobiliaria inmo = new Inmobiliaria();
-        Usuario u = us.crearUsuario(password, email, inmo);
+        Usuario u = us.crearUsuario(password, email, inmo, estadoUsuario, fechaAltaUsuario);
         
         inmo.setCuit(cuit);
         inmo.setNombre(nombre);

@@ -3,6 +3,7 @@ package ar.com.ada.api.inmobiliaria.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,7 @@ public class LocatarioController {
     public LocatarioResponse postCrearLocatarioYUsuario(@RequestBody LocatarioRequest req){
         LocatarioResponse r = new LocatarioResponse();
 
-        Locatario l = ls.crearLocatario(req.nombre, req.dni, req.edad, req.email, req.password);
+        Locatario l = ls.crearLocatario(req.nombre, req.dni, req.edad, req.email, req.password, req.estadoUsuario, req.fechaAltaUsuario);
 
         r.isOk = true;
         r.message = "Locatario generado";
@@ -36,7 +37,7 @@ public class LocatarioController {
     }
 
     
-    @GetMapping("/locatarios/{id}")
+    @GetMapping("/locatarios/{id}") /**funciona! */
     public Locatario getLocatarioById(@PathVariable int id)
     {
         Locatario l = ls.buscarPorId(id);
@@ -44,13 +45,27 @@ public class LocatarioController {
         return l;
     }
 
-    @GetMapping("/locatarios")
+    @GetMapping("/locatarios") /**funciona */
     public List<Locatario> getLocatarios() {
 
         List<Locatario> locatarios = ls.listarLocatariosYUsuarios();
 
         return locatarios;
 
+    }
+
+    @DeleteMapping("/locatarios/{id}")
+    public LocatarioResponse bajaLocatario(@PathVariable int id){
+        LocatarioResponse r = new LocatarioResponse();
+
+        Locatario l = ls.bajaLocatario(id);
+
+        r.isOk = true;
+        r.message = "Locatario " + l.getNombre() + "dado de baja";
+        r.locatarioId = l.getLocatarioId();
+
+
+        return r;
     }
 
 }

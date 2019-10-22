@@ -1,5 +1,6 @@
 package ar.com.ada.api.inmobiliaria.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,12 +23,17 @@ public class UsuarioService {
         this.repo.save(u);
     }
 
-    public Usuario crearUsuario(String password, String email, ITieneUsuario tieneUsuario) {
+    public Usuario crearUsuario(String password, String email, ITieneUsuario tieneUsuario, String estadoUsuario, Date fechaAltaUsuario) {
         Usuario u = new Usuario();
         u.setPassword(password);
         u.setEmail(email);
         u.setUsername(u.getEmail());
         u.setTipoUsuario(tieneUsuario.toString());
+        Date f = new Date();
+        u.setFechaAltaUsuario(f);
+        u.setEstadoUsuario("Activo");
+
+
         repo.save(u);
 
         return u;
@@ -48,6 +54,17 @@ public class UsuarioService {
         u.setUsername(userName);
         u.setEmail(email);
         repo.save(u);
+        return u;
+    }
+
+    public Usuario BajaUsuario(int id){
+
+        Usuario u = this.buscarPorId(id);
+        u.setEstadoUsuario("Baja");
+        Date f = new Date();
+        u.setFechaBajaUsuario(f);
+        repo.save(u);
+
         return u;
     }
 
