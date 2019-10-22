@@ -1,5 +1,7 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
@@ -21,6 +23,15 @@ public class Usuario implements ITieneUsuario {
 
     @Column(name = "tipo_usuario")
     private String tipoUsuario;
+
+    @Column(name = "estado_usuario")
+    private String estadoUsuario;
+
+    @Column(name = "fecha_alta")
+    private Date fechaAltaUsuario;
+
+    @Column(name = "fecha_baja")
+    private Date fechaBajaUsuario;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Locatario locatario;
@@ -88,6 +99,30 @@ public class Usuario implements ITieneUsuario {
 
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public String getEstadoUsuario() {
+        return estadoUsuario;
+    }
+
+    public void setEstadoUsuario(String estadoUsuario) {
+        this.estadoUsuario = estadoUsuario;
+    }
+
+    public Date getFechaAltaUsuario() {
+        return fechaAltaUsuario;
+    }
+
+    public void setFechaAltaUsuario(Date fechaAltaUsuario) {
+        this.fechaAltaUsuario = fechaAltaUsuario;
+    }
+
+    public Date getFechaBajaUsuario() {
+        return fechaBajaUsuario;
+    }
+
+    public void setFechaBajaUsuario(Date fechaBajaUsuario) {
+        this.fechaBajaUsuario = fechaBajaUsuario;
     }
 
 
