@@ -7,7 +7,7 @@ public class AvisoRequest{
     public String moneda;
     public double valor;
     public String plazoMeses;
-    public String operacion;
+    public String tipoOperacion;
     public String inmueble;
 
 
