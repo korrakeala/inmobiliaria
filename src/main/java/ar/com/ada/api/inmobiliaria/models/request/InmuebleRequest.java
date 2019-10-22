@@ -15,5 +15,6 @@ public class InmuebleRequest {
     public String disposicion;
     public int cantBanios;
     public int antiguedadAnios;
+   
 	
 }

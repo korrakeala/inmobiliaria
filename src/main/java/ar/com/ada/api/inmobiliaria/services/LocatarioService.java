@@ -1,10 +1,12 @@
 package ar.com.ada.api.inmobiliaria.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.inmobiliaria.entities.Locador;
 import ar.com.ada.api.inmobiliaria.entities.Locatario;
 import ar.com.ada.api.inmobiliaria.entities.Usuario;
 import ar.com.ada.api.inmobiliaria.repo.LocatarioRepository;
@@ -57,6 +59,10 @@ public class LocatarioService {
         l.setEmail(email);
         repo.save(l);
         return l;
+    }
+
+     public List<Locatario> listarLocatariosYUsuarios() {
+        return repo.findAll();
     }
 
     

@@ -15,6 +15,8 @@ public class ReservaService {
 
     @Autowired
     ReservaRepository repo;
+    @Autowired
+    InmuebleService is;
 
         public void grabar(Reserva reserva) {
         this.repo.save(reserva);
@@ -46,6 +48,8 @@ public class ReservaService {
     public List<Reserva> listarInmueblesReservados(){
         return repo.findAll();
     }
+
+
 
     
 }

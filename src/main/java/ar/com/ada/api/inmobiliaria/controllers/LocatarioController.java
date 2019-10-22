@@ -1,6 +1,10 @@
 package ar.com.ada.api.inmobiliaria.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,4 +34,23 @@ public class LocatarioController {
         r.locatarioId = l.getLocatarioId();
         return r; 
     }
+
+    
+    @GetMapping("/locatarios/{id}")
+    public Locatario getLocatarioById(@PathVariable int id)
+    {
+        Locatario l = ls.buscarPorId(id);
+        
+        return l;
+    }
+
+    @GetMapping("/locatarios")
+    public List<Locatario> getLocatarios() {
+
+        List<Locatario> locatarios = ls.listarLocatariosYUsuarios();
+
+        return locatarios;
+
+    }
+
 }

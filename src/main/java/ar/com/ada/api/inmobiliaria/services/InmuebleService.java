@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.Locador;
-import ar.com.ada.api.inmobiliaria.entities.Persona;
 import ar.com.ada.api.inmobiliaria.repo.InmuebleRepository;
 
 /**
@@ -62,5 +61,18 @@ public class InmuebleService {
             return in.get();
         return null;
     }
+
+    public Inmueble updateInmueble(int inmuebleId,char reservado) {
+        Inmueble i = new Inmueble();
+
+        i.setInmuebleId(i.getInmuebleId());
+
+        i.setReservado(reservado);
+        
+      
+        repo.save(i);
+        return i;
+    }
+
 
 }
