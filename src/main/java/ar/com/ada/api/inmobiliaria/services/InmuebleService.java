@@ -24,7 +24,7 @@ public class InmuebleService {
     @Autowired
     LocadorService ls;
 
-    public Inmueble CrearInmueble(int locadorId, String tipoInmueble, int cantAmb, String direccion, int superficie,
+    public Inmueble crearInmueble(int locadorId, String tipoInmueble, int cantAmb, String direccion, int superficie,
             int cantDormitorio, char aptoProf, String disposicion, int cantBanios, int antiguedadAnios) {
 
         Locador loc = ls.buscarPorId(locadorId);
@@ -46,9 +46,7 @@ public class InmuebleService {
 
     }
 
-    
-
-    public List<Inmueble> getInmuebles(){
+    public List<Inmueble> getInmuebles() {
         return repo.findAll();
 
     }
@@ -56,23 +54,19 @@ public class InmuebleService {
     public Inmueble buscarPorId(int id) {
 
         Optional<Inmueble> in = repo.findById(id);
-        
+
         if (in.isPresent())
             return in.get();
         return null;
     }
-//* falta aplicar IOperable, pero no sé como aplicarlo
-    public Inmueble updateInmueble(int inmuebleId,char reservado) {
-        Inmueble i = new Inmueble();
 
-        i.setInmuebleId(i.getInmuebleId());
+    public Inmueble reservarInmueble(int inmuebleId) {
+        Inmueble i = buscarPorId(inmuebleId);
 
-        i.setReservado(reservado);
-        
-      
+        i.setReservado('s');
+
         repo.save(i);
         return i;
     }
-
 
 }

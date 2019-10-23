@@ -20,7 +20,7 @@ public class Locatario extends Persona implements ITieneUsuario {
     private int id; // cambio nombre del atributo para poder mapear ITieneUsuario con Usuario
 
     @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL)
-    private List<Reserva> reservas = new ArrayList<Reserva>();
+    private List<Reserva> reservas = new ArrayList<Reserva>(); //creo que hay que sacar reserva_id en la DB
 
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")

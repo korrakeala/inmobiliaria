@@ -27,7 +27,19 @@ public class InmobiliariaController {
     @Autowired
     LocadorService ls;
 
-    @PostMapping("/locadores") // funciona!
+    @PostMapping("/inmobiliarias") // funciona! habría que poner restricción para que se pueda crear sólo una?
+    public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req) {
+        InmobiliariaResponse r = new InmobiliariaResponse();
+
+        int inmobiliariaId = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password, req.estadoUsuario,
+                req.fechaAltaUsuario);
+        r.isOk = true;
+        r.message = "Inmobiliaria generada";
+        r.inmobiliariaId = inmobiliariaId;
+        return r;
+    }
+
+    @PostMapping("/locadores") // funciona! método específico para tipo de usuario Inmobiliaria
     public LocadorResponse postRegisterLocador(@RequestBody LocadorRequest req) {
         LocadorResponse r = new LocadorResponse();
 
@@ -40,7 +52,7 @@ public class InmobiliariaController {
 
     }
 
-    @GetMapping("/locadores") /**funciona! */
+    @GetMapping("/locadores") /** funciona! método específico para tipo de usuario Inmobiliaria*/
 
      public List<Locador> getLocadores()/**@RequestParam(value = "nombre", required = false) String nombre*/ {
 
@@ -55,9 +67,9 @@ public class InmobiliariaController {
 
         return locadores;
 
-     }
+    }
 
-    @GetMapping("/locadores/{id}") /** funciona! */
+    @GetMapping("/locadores/{id}") /** funciona! método específico para tipo de usuario Inmobiliaria*/
     public Locador getLocador(@PathVariable int id) {
 
         Locador l = ls.buscarPorId(id);
@@ -66,15 +78,4 @@ public class InmobiliariaController {
 
     }
 
-    @PostMapping("/inmobiliarias") // funciona!
-    public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req) {
-        InmobiliariaResponse r = new InmobiliariaResponse();
-
-        int inmobiliariaId = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password, req.estadoUsuario,
-                req.fechaAltaUsuario);
-        r.isOk = true;
-        r.message = "Inmobiliaria generada";
-        r.inmobiliariaId = inmobiliariaId;
-        return r;
-    }
 }

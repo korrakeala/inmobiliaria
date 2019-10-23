@@ -1,6 +1,16 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import ar.com.ada.api.inmobiliaria.interfaces.IOperable;
 
@@ -57,16 +67,20 @@ public class Aviso {
         return operacion;
     }
 
-    public void setOperacion(IOperable operacion) {
+    public void setOperacionYTipo(IOperable operacion) {
         this.operacion = operacion;
-    }
-
-    public void setTipoOperacion(IOperable operacion) {
         this.tipoOperacion = operacion.getClass().getName();
     }
 
+    /*public void setTipoOperacion(IOperable operacion) {
+        this.tipoOperacion = operacion.getClass().getName();
+    }*/
+
     public void setTipoOperacion(String tipoOperacion) {
         this.tipoOperacion = tipoOperacion;
+    }
+
+    public Aviso() {
     }
 
 }

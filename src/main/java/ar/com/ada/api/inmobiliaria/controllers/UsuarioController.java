@@ -36,7 +36,7 @@ public class UsuarioController {
 
     }*/
 
-    @GetMapping("/usuarios")
+    @GetMapping("/usuarios") // exclusivo de tipo de usuario Inmobiliaria
     public List<Usuario> getUsuarios() {
 
         List<Usuario> usuarios = us.listarUsuarios();
