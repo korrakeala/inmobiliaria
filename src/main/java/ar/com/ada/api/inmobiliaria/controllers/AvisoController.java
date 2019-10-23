@@ -5,11 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.com.ada.api.inmobiliaria.entities.Alquiler;
 import ar.com.ada.api.inmobiliaria.entities.Aviso;
-import ar.com.ada.api.inmobiliaria.entities.Venta;
+import ar.com.ada.api.inmobiliaria.models.request.AvisoAlquilerRequest;
+import ar.com.ada.api.inmobiliaria.models.request.AvisoVentaRequest;
+import ar.com.ada.api.inmobiliaria.models.request.UpdateAvisoRequest;
+import ar.com.ada.api.inmobiliaria.models.response.AvisoAlquilerResponse;
+import ar.com.ada.api.inmobiliaria.models.response.AvisoVentaResponse;
+import ar.com.ada.api.inmobiliaria.models.response.UpdateAvisoResponse;
 import ar.com.ada.api.inmobiliaria.services.AlquilerService;
 import ar.com.ada.api.inmobiliaria.services.AvisoService;
 import ar.com.ada.api.inmobiliaria.services.VentaService;
@@ -24,61 +31,91 @@ public class AvisoController {
     AvisoService as;
     @Autowired
     AlquilerService als;
-    @Autowired 
+    @Autowired
     VentaService vs;
 
+    @PostMapping("/avisos/alquileres") //funciona! exclusivo de usuario inmobiliaria
+    public AvisoAlquilerResponse postAvisoAlquiler(@RequestBody AvisoAlquilerRequest req){
+        AvisoAlquilerResponse r = new AvisoAlquilerResponse();
 
-    @GetMapping("/avisos") /**funciona! */
-     public List<Aviso> getAvisos() {
+        Aviso a = as.crearAvisoAlquiler(req.inmuebleId, req.moneda, req.plazoMeses, req.tipoAlquiler, req.valor);
+
+        r.isOk = true;
+        r.message = "Aviso de Alquiler creado con éxito.";
+        r.avisoid = a.getAvisoId();
+        return r;
+    }
+
+    @PostMapping("/avisos/ventas") //funciona! exclusivo de usuario inmobiliaria
+    public AvisoVentaResponse postAvisoVenta(@RequestBody AvisoVentaRequest req){
+        AvisoVentaResponse r = new AvisoVentaResponse();
+
+        Aviso a = as.crearAvisoVenta(req.inmuebleId, req.moneda, req.valor);
+
+        r.isOk = true;
+        r.message = "Aviso de Venta creado con éxito.";
+        r.avisoid = a.getAvisoId();
+        return r;
+    }
+
+
+
+    @GetMapping("/avisos") /** funciona! */
+    public List<Aviso> getAvisos() {
         List<Aviso> av = as.listarAvisos();
 
         return av;
-     }
+    }
 
-    @GetMapping("/avisos/{id}") 
-    public Aviso getAvisoById(@PathVariable int id)
-    {
+    @GetMapping("/avisos/{id}")
+    public Aviso getAvisoById(@PathVariable int id) {
         Aviso av = as.buscarPorId(id);
-        
+
         return av;
     }
 
-    @GetMapping("/avisos/alquileres") /**funciona! */
-     public List<Alquiler> getAlquileres() {
+    @PutMapping("/avisos/{id}")
+    public UpdateAvisoResponse actualizarAviso(@PathVariable int id, @RequestBody UpdateAvisoRequest req){
+        
+        
+        return null;
+    }
+
+
+
+    /*@GetMapping("/avisos/alquileres") /** funciona! 
+    public List<Alquiler> getAlquileres() {
         List<Alquiler> al = als.listarAlquileres();
 
         return al;
-     }
+    }
 
+    @GetMapping("/avisos/alquileres/{id}")
 
-    @GetMapping("/avisos/alquileres/{id}") 
-
-    public Alquiler getAlquilerById(@PathVariable int id)
-    {
+    public Alquiler getAlquilerById(@PathVariable int id) {
         Alquiler al = als.buscarPorId(id);
-        
+
         return al;
     }
 
-    @GetMapping("/avisos/ventas")  /**funciona! */
+    @GetMapping("/avisos/ventas") /** funciona!
 
-      public List<Venta> getVentas() {
+    public List<Venta> getVentas() {
         List<Venta> v = vs.listarVentas();
 
         return v;
-     }
-
-     @GetMapping("/avisos/ventas/{id}")
-
-    public Venta getVentaById(@PathVariable int id)
-    {
-        Venta v = vs.buscarPorId(id);
-        
-        return v;
     }
 
+    @GetMapping("/avisos/ventas/{id}")
 
-/**usamos las querys para filtrar por tipo deoperacion o generamos get alquiler y get venta para listarlos? */
+    public Venta getVentaById(@PathVariable int id) {
+        Venta v = vs.buscarPorId(id);
 
-    
+        return v;
+    }*/
+
+    /**
+     * usamos las querys para filtrar por tipo de operacion
+     */
+
 }
