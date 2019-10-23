@@ -4,6 +4,9 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.inmobiliaria.entities.Aviso;
+import ar.com.ada.api.inmobiliaria.entities.Inmueble;
+import ar.com.ada.api.inmobiliaria.entities.Locatario;
 import ar.com.ada.api.inmobiliaria.entities.Reserva;
 import ar.com.ada.api.inmobiliaria.repo.ReservaRepository;
 
@@ -22,18 +25,18 @@ public class ReservaService {
         this.repo.save(reserva);
     }
 
-    /**public void crearReserva(int avisoId,Date fecha, String inmueble, int id, String locatario) {
-        Reserva reserva = new Reserva();
-        reserva.setAviso(avisoId);
-        reserva.setFecha(fecha);
-        reserva.setInmueble(inmueble);
-        reserva.setId(id);
-        reserva.setLocatario(locatario);
+    public Reserva crearReserva(Aviso aviso, Inmueble inmueble, Locatario locatario) {
+        Reserva r = new Reserva();
+        r.setAviso(aviso);
+        Date f = new Date();
+        r.setFecha(f);
+        r.setInmueble(inmueble);
+        r.setLocatario(locatario);
+    
+        repo.save(r);
+        return r;
 
-        repo.save(reserva);
-
-    }*/
-
+    }
 
     public Reserva buscarPorId(int id){
         Optional<Reserva> r = repo.findById(id);

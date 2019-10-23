@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ar.com.ada.api.inmobiliaria.entities.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.Reserva;
 import ar.com.ada.api.inmobiliaria.models.request.InmuebleRequest;
+import ar.com.ada.api.inmobiliaria.models.request.ReservaInmuebleRequest;
 import ar.com.ada.api.inmobiliaria.models.response.InmuebleResponse;
 import ar.com.ada.api.inmobiliaria.models.response.ReservarInmuebleResponse;
 import ar.com.ada.api.inmobiliaria.services.InmuebleService;
@@ -71,11 +72,11 @@ public class InmuebleController {
         return r;
     }
 
-    @PutMapping("/inmuebles/reservas/{id}")
-    public ReservarInmuebleResponse updateInmueble(@PathVariable int id) {
+    @PutMapping("/inmuebles/reservas/{id}") // No funciona aún, será incorporado para tercera entrega
+    public ReservarInmuebleResponse updateInmueble(@PathVariable int id, ReservaInmuebleRequest req) {
         ReservarInmuebleResponse r = new ReservarInmuebleResponse();
 
-        Inmueble i = is.reservarInmueble(id);
+        Inmueble i = is.reservarInmueble(id, req.locatarioId);
 
         r.isOk = true;
         r.message = "Inmueble" + i.getInmuebleId() + "¡actualizado con éxito!";

@@ -73,4 +73,9 @@ public class Alquiler implements IOperable {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Alquiler";
+    }
+
 }

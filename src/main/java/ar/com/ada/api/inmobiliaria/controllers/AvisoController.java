@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.com.ada.api.inmobiliaria.entities.Alquiler;
 import ar.com.ada.api.inmobiliaria.entities.Aviso;
+import ar.com.ada.api.inmobiliaria.entities.Venta;
 import ar.com.ada.api.inmobiliaria.models.request.AvisoAlquilerRequest;
 import ar.com.ada.api.inmobiliaria.models.request.AvisoVentaRequest;
-import ar.com.ada.api.inmobiliaria.models.request.UpdateAvisoRequest;
 import ar.com.ada.api.inmobiliaria.models.response.AvisoAlquilerResponse;
 import ar.com.ada.api.inmobiliaria.models.response.AvisoVentaResponse;
-import ar.com.ada.api.inmobiliaria.models.response.UpdateAvisoResponse;
 import ar.com.ada.api.inmobiliaria.services.AlquilerService;
 import ar.com.ada.api.inmobiliaria.services.AvisoService;
+import ar.com.ada.api.inmobiliaria.services.InmuebleService;
 import ar.com.ada.api.inmobiliaria.services.VentaService;
 
 /**
@@ -33,6 +34,8 @@ public class AvisoController {
     AlquilerService als;
     @Autowired
     VentaService vs;
+    @Autowired
+    InmuebleService is;
 
     @PostMapping("/avisos/alquileres") //funciona! exclusivo de usuario inmobiliaria
     public AvisoAlquilerResponse postAvisoAlquiler(@RequestBody AvisoAlquilerRequest req){
@@ -74,11 +77,43 @@ public class AvisoController {
         return av;
     }
 
-    @PutMapping("/avisos/{id}")
-    public UpdateAvisoResponse actualizarAviso(@PathVariable int id, @RequestBody UpdateAvisoRequest req){
+    @PutMapping("/avisos/alquileres/{id}") // No funciona aún, será incorporado para tercera entrega
+    public AvisoAlquilerResponse actualizarAvisoAlquiler(@PathVariable int id, @RequestBody AvisoAlquilerRequest req){
+        AvisoAlquilerResponse r = new AvisoAlquilerResponse();
         
+        Aviso a = as.buscarPorId(id);
+        a.setInmueble(is.buscarPorId(req.inmuebleId));
+        Alquiler al = (Alquiler)a.getOperacion();   
+        al.setMoneda(req.moneda);
+        al.setPlazoMeses(req.plazoMeses);
+        al.setTipoAlquiler(req.tipoAlquiler);
+        al.setValor(req.valor);
+        als.grabar(al);
+        a.setOperacionYTipo(al);
+        as.grabar(a);
         
-        return null;
+        r.isOk = true;
+        r.message = "Aviso actualizado con éxito.";
+        r.avisoid = a.getAvisoId();
+        return r;
+    }
+
+    @PutMapping("/avisos/ventas/{id}") // No funciona aún, será incorporado para tercera entrega
+    public AvisoVentaResponse actualizarAvisoVenta(@PathVariable int id, @RequestBody AvisoVentaRequest req){
+        AvisoVentaResponse r = new AvisoVentaResponse();
+        
+        Aviso a = as.buscarPorId(id);
+        a.setInmueble(is.buscarPorId(req.inmuebleId));
+        Venta v = (Venta)a.getOperacion();   
+        v.setMoneda(req.moneda);
+        v.setValor(req.valor);
+        vs.grabar(v);
+        as.grabar(a);
+        
+        r.isOk = true;
+        r.message = "Aviso actualizado con éxito.";
+        r.avisoid = a.getAvisoId();
+        return r;
     }
 
 

@@ -69,7 +69,7 @@ public class Aviso {
 
     public void setOperacionYTipo(IOperable operacion) {
         this.operacion = operacion;
-        this.tipoOperacion = operacion.getClass().getName();
+        this.tipoOperacion = operacion.toString();
     }
 
     /*public void setTipoOperacion(IOperable operacion) {

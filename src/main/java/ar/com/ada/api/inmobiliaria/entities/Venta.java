@@ -55,4 +55,9 @@ public class Venta implements IOperable {
         this.aviso = aviso;
     }
 
+    @Override
+    public String toString() {
+        return "Venta";
+    }
+
 }

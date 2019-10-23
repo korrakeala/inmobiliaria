@@ -36,6 +36,7 @@ public class Inmueble {
 
     
     @OneToMany(mappedBy = "inmueble", cascade = CascadeType.ALL)
+    @JsonIgnore
     List<Aviso> avisos = new ArrayList<Aviso>();
 
     @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL)

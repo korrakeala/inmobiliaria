@@ -80,4 +80,9 @@ public class AvisoService {
         return repo.findAll();
     }
 
+    public void eliminarAviso(int avisoId){ //conviene tenerlo así? o mejor baja lógica?
+        Aviso a = this.buscarPorId(avisoId);
+        repo.delete(a);
+    }
+
 }

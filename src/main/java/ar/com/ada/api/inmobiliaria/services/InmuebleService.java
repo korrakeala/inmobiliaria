@@ -6,8 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.inmobiliaria.entities.Aviso;
 import ar.com.ada.api.inmobiliaria.entities.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.Locador;
+import ar.com.ada.api.inmobiliaria.entities.Locatario;
+import ar.com.ada.api.inmobiliaria.entities.Reserva;
 import ar.com.ada.api.inmobiliaria.repo.InmuebleRepository;
 
 /**
@@ -23,6 +26,15 @@ public class InmuebleService {
 
     @Autowired
     LocadorService ls;
+
+    @Autowired
+    ReservaService rs;
+
+    @Autowired
+    AvisoService as;
+
+    @Autowired
+    LocatarioService locats;
 
     public Inmueble crearInmueble(int locadorId, String tipoInmueble, int cantAmb, String direccion, int superficie,
             int cantDormitorio, char aptoProf, String disposicion, int cantBanios, int antiguedadAnios) {
@@ -60,9 +72,13 @@ public class InmuebleService {
         return null;
     }
 
-    public Inmueble reservarInmueble(int inmuebleId) {
-        Inmueble i = buscarPorId(inmuebleId);
+    public Inmueble reservarInmueble(int avisoId, int locatarioId) {
+        Aviso a = as.buscarPorId(avisoId);
+        Inmueble i = buscarPorId(a.getInmueble().getInmuebleId());
+        Locatario l = locats.buscarPorId(locatarioId);
+        Reserva r = rs.crearReserva(a, i, l);
 
+        i.setReserva(r);
         i.setReservado('s');
 
         repo.save(i);
