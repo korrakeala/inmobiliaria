@@ -10,7 +10,6 @@ import ar.com.ada.api.inmobiliaria.entities.Alquiler;
 import ar.com.ada.api.inmobiliaria.entities.Aviso;
 import ar.com.ada.api.inmobiliaria.entities.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.Venta;
-import ar.com.ada.api.inmobiliaria.interfaces.IOperable;
 import ar.com.ada.api.inmobiliaria.repo.AvisoRepository;
 
 /**

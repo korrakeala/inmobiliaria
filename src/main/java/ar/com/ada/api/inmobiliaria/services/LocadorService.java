@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.Locador;
-import ar.com.ada.api.inmobiliaria.entities.Persona;
 import ar.com.ada.api.inmobiliaria.repo.LocadorRepository;
 
 @Service
@@ -33,7 +32,7 @@ public class LocadorService {
     }
     
         
-    public List<Locador> buscarLocadoresOrdenadoPorNombre() {
+    /*public List<Locador> buscarLocadoresOrdenadoPorNombre() {
 
         return repo.findAllOrderByNombre();
     }
@@ -43,5 +42,5 @@ public class LocadorService {
     public List<Locador> buscarTodosPorNombre(String nombre) {
 
         return repo.findAllByNombreContiene(nombre);
-    }
+    }*/
 }

@@ -1,10 +1,6 @@
 package ar.com.ada.api.inmobiliaria.entities;
 
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
-
-import org.hibernate.annotations.Table;
 
 @MappedSuperclass
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
