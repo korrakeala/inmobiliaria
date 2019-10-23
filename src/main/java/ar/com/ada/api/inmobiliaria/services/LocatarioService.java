@@ -66,9 +66,9 @@ public class LocatarioService {
     public Locatario bajaLocatario(int id){
 
         Locatario l = this.buscarPorId(id);
-        Usuario u = us.BajaUsuario(id);
-       
-        
+        Usuario u = us.bajaUsuario(l.getUsuario().getUsuarioId());
+        l.setUsuario(u); //no se si hace falta?
+
         repo.save(l);
 
         return l;

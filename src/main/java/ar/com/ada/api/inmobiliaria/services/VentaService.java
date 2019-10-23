@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.com.ada.api.inmobiliaria.entities.Aviso;
 import ar.com.ada.api.inmobiliaria.entities.Venta;
 import ar.com.ada.api.inmobiliaria.repo.VentaRepository;
 
@@ -20,13 +19,21 @@ public class VentaService {
     VentaRepository repo;
     @Autowired
     AvisoService as;
-    
 
-     public void grabar(Venta v) {
+    public Venta crearVenta(String moneda, double valor){
+        Venta v = new Venta();
+        v.setMoneda(moneda);
+        v.setValor(valor);
+        repo.save(v);
+        
+        return v;
+    }
+
+    public void grabar(Venta v) {
         this.repo.save(v);
     }
 
-        public Venta buscarPorId(int id) {
+    public Venta buscarPorId(int id) {
         Optional<Venta> v = repo.findById(id);
 
         if (v.isPresent())
@@ -35,11 +42,8 @@ public class VentaService {
 
     }
 
-
-        
     public List<Venta> listarVentas() {
         return repo.findAll();
     }
 
 }
-   

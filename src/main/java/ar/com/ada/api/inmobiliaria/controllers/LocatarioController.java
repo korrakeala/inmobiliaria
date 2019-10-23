@@ -36,15 +36,6 @@ public class LocatarioController {
         return r; 
     }
 
-    
-    @GetMapping("/locatarios/{id}") /**funciona! */
-    public Locatario getLocatarioById(@PathVariable int id)
-    {
-        Locatario l = ls.buscarPorId(id);
-        
-        return l;
-    }
-
     @GetMapping("/locatarios") /**funciona */
     public List<Locatario> getLocatarios() {
 
@@ -52,6 +43,14 @@ public class LocatarioController {
 
         return locatarios;
 
+    }
+    
+    @GetMapping("/locatarios/{id}") /**funciona! */
+    public Locatario getLocatarioById(@PathVariable int id)
+    {
+        Locatario l = ls.buscarPorId(id);
+        
+        return l;
     }
 
     @DeleteMapping("/locatarios/{id}")
@@ -63,7 +62,6 @@ public class LocatarioController {
         r.isOk = true;
         r.message = "Locatario " + l.getNombre() + "dado de baja";
         r.locatarioId = l.getLocatarioId();
-
 
         return r;
     }

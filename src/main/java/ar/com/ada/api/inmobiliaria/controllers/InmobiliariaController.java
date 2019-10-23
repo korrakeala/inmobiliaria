@@ -1,4 +1,5 @@
 package ar.com.ada.api.inmobiliaria.controllers;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,19 @@ public class InmobiliariaController {
     @Autowired
     LocadorService ls;
 
-    @PostMapping("/locadores") // funciona!
+    @PostMapping("/inmobiliarias") // funciona! habría que poner restricción para que se pueda crear sólo una?
+    public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req) {
+        InmobiliariaResponse r = new InmobiliariaResponse();
+
+        int inmobiliariaId = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password, req.estadoUsuario,
+                req.fechaAltaUsuario);
+        r.isOk = true;
+        r.message = "Inmobiliaria generada";
+        r.inmobiliariaId = inmobiliariaId;
+        return r;
+    }
+
+    @PostMapping("/locadores") // funciona! método específico para tipo de usuario Inmobiliaria
     public LocadorResponse postRegisterLocador(@RequestBody LocadorRequest req) {
         LocadorResponse r = new LocadorResponse();
 
@@ -36,38 +49,25 @@ public class InmobiliariaController {
         r.locadorId = l.getLocadorId();
         return r;
 
-
     }
 
-    @GetMapping("/locadores") /**funciona! */
+    @GetMapping("/locadores") /** funciona! método específico para tipo de usuario Inmobiliaria*/
 
-     public List<Locador> getLocadores() {
+    public List<Locador> getLocadores() {
 
         List<Locador> locadores = ls.listarLocadores();
 
         return locadores;
 
-     }
+    }
 
-      @GetMapping("/locadores/{id}") /**funciona! */
-     public Locador getLocador(@PathVariable int id) {
+    @GetMapping("/locadores/{id}") /** funciona! método específico para tipo de usuario Inmobiliaria*/
+    public Locador getLocador(@PathVariable int id) {
 
-        Locador l= ls.buscarPorId(id);
+        Locador l = ls.buscarPorId(id);
 
         return l;
 
-     }
-
-
-
-    @PostMapping("/inmobiliarias") // funciona!
-    public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req){
-        InmobiliariaResponse r = new InmobiliariaResponse();
-
-        int inmobiliariaId = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password, req.estadoUsuario, req.fechaAltaUsuario);
-        r.isOk = true;
-        r.message = "Inmobiliaria generada";
-        r.inmobiliariaId = inmobiliariaId;
-        return r; 
     }
+
 }

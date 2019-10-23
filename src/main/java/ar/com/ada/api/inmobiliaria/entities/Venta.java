@@ -23,14 +23,6 @@ public class Venta implements IOperable {
     @JoinColumn(name= "aviso_id", referencedColumnName = "aviso_id")
     private Aviso aviso;
 
-    public int getVentaId() {
-        return id;
-    }
-
-    public void setVentaId(int ventaId) {
-        this.id = ventaId;
-    }
-
     public String getMoneda() {
         return moneda;
     }

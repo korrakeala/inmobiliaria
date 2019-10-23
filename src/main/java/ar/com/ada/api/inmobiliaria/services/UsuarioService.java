@@ -57,7 +57,7 @@ public class UsuarioService {
         return u;
     }
 
-    public Usuario BajaUsuario(int id){
+    public Usuario bajaUsuario(int id){
 
         Usuario u = this.buscarPorId(id);
         u.setEstadoUsuario("Baja");

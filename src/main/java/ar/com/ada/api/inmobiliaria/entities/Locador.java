@@ -25,7 +25,7 @@ public class Locador extends Persona implements ITieneUsuario {
     List<Inmueble> inmuebles = new ArrayList<Inmueble>();
     
     @Transient
-    private String tipoUsuario = "inmobiliaria";
+    private String tipoUsuario = "inmobiliaria"; // ver si tiene algo que ver
 
 
 

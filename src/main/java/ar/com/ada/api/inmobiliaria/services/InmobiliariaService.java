@@ -24,8 +24,8 @@ public class InmobiliariaService {
     @Autowired
     UsuarioService us;
 
-    public void grabar(Inmobiliaria inmboliaria) {
-        this.repo.save(inmboliaria);
+    public void grabar(Inmobiliaria inmobiliaria) {
+        this.repo.save(inmobiliaria);
     }
 
     public int crearInmobiliaria(String cuit, String nombre, String email, String password, String estadoUsuario, Date fechaAltaUsuario) {

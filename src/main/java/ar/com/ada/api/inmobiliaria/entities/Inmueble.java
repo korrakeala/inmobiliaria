@@ -31,6 +31,7 @@ public class Inmueble {
 
     @ManyToOne
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
+    @JsonIgnore
     Locador locador;
 
     
@@ -45,14 +46,14 @@ public class Inmueble {
     @Column(name = "cant_amb")
     int cantAmb;
     String direccion;
-    char reservado = 'n';
+    char reservado = 'n'; //'s' ó 'n'
     //boolean reservado = false; // cómo convertir de boolean a char?
     // Coordenada ubicacion; (para usar API Maps a futuro)
     int superficie; // en m2
     @Column(name = "cant_dormitorio")
     int cantDormitorio;
     @Column(name = "apto_prof") // cómo convertir de boolean a char?
-    char aptoProf;
+    char aptoProf; //'s' ó 'n'
     //boolean aptoProf;
     String disposicion;
     @Column(name = "cant_banios")

@@ -20,18 +20,10 @@ public class Alquiler implements IOperable {
     private String moneda;
     private double valor;
     @Column(name = "plazo_meses")
-    private String plazoMeses;
+    private int plazoMeses;
     @OneToOne
     @JoinColumn(name = "aviso_id", referencedColumnName = "aviso_id")
     private Aviso aviso;
-
-    public int getAlquilerId() {
-        return id;
-    }
-
-    public void setAlquilerId(int alquilerId) {
-        this.id = alquilerId;
-    }
 
     public String getTipoAlquiler() {
         return tipoAlquiler;
@@ -57,11 +49,11 @@ public class Alquiler implements IOperable {
         this.valor = valor;
     }
 
-    public String getPlazoMeses() {
+    public int getPlazoMeses() {
         return plazoMeses;
     }
 
-    public void setPlazoMeses(String plazoMeses) {
+    public void setPlazoMeses(int plazoMeses) {
         this.plazoMeses = plazoMeses;
     }
 

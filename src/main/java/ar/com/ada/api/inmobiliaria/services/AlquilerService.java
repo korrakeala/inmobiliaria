@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.Alquiler;
-import ar.com.ada.api.inmobiliaria.entities.Aviso;
 import ar.com.ada.api.inmobiliaria.repo.AlquilerRepository;
 
 /**
@@ -21,6 +20,17 @@ public class AlquilerService {
     @Autowired
     AvisoService as;
 
+    public Alquiler crearAlquiler(String moneda, int plazoMeses, String tipoAlquiler, double valor){
+        Alquiler al = new Alquiler();
+        al.setMoneda(moneda);
+        al.setPlazoMeses(plazoMeses);
+        al.setTipoAlquiler(tipoAlquiler);
+        al.setValor(valor);
+        repo.save(al);
+        
+        return al;
+    }
+
     public void grabar(Alquiler a) {
         this.repo.save(a);
     }
@@ -33,7 +43,6 @@ public class AlquilerService {
         return null;
     }
 
-        
     public List<Alquiler> listarAlquileres() {
         return repo.findAll();
     }
