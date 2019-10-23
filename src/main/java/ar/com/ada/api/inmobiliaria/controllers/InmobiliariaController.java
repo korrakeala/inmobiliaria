@@ -1,4 +1,5 @@
 package ar.com.ada.api.inmobiliaria.controllers;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.Locador;
@@ -36,38 +38,43 @@ public class InmobiliariaController {
         r.locadorId = l.getLocadorId();
         return r;
 
-
     }
 
     @GetMapping("/locadores") /**funciona! */
 
-     public List<Locador> getLocadores() {
+     public List<Locador> getLocadores()/**@RequestParam(value = "nombre", required = false) String nombre*/ {
 
         List<Locador> locadores = ls.listarLocadores();
+
+        /**if (nombre == null) {
+            locadores = ls.buscarLocadoresOrdenadoPorNombre();
+        } else {
+            locadores = ls.buscarTodosPorNombre(nombre);
+        }*/
+
 
         return locadores;
 
      }
 
-      @GetMapping("/locadores/{id}") /**funciona! */
-     public Locador getLocador(@PathVariable int id) {
+    @GetMapping("/locadores/{id}") /** funciona! */
+    public Locador getLocador(@PathVariable int id) {
 
-        Locador l= ls.buscarPorId(id);
+        Locador l = ls.buscarPorId(id);
 
         return l;
 
-     }
-
-
+    }
 
     @PostMapping("/inmobiliarias") // funciona!
-    public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req){
+    public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req) {
         InmobiliariaResponse r = new InmobiliariaResponse();
 
-        int inmobiliariaId = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password, req.estadoUsuario, req.fechaAltaUsuario);
+        int inmobiliariaId = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password, req.estadoUsuario,
+                req.fechaAltaUsuario);
         r.isOk = true;
         r.message = "Inmobiliaria generada";
         r.inmobiliariaId = inmobiliariaId;
-        return r; 
+        return r;
     }
 }
