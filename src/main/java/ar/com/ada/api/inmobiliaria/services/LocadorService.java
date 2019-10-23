@@ -1,11 +1,13 @@
 package ar.com.ada.api.inmobiliaria.services;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.Locador;
+import ar.com.ada.api.inmobiliaria.entities.Persona;
 import ar.com.ada.api.inmobiliaria.repo.LocadorRepository;
 
 @Service
@@ -29,5 +31,17 @@ public class LocadorService {
     public List<Locador> listarLocadores() {
         return repo.findAll();
     }
+    
+        
+    public List<Locador> buscarLocadoresOrdenadoPorNombre() {
 
+        return repo.findAllOrderByNombre();
+    }
+
+
+    
+    public List<Locador> buscarTodosPorNombre(String nombre) {
+
+        return repo.findAllByNombreContiene(nombre);
+    }
 }

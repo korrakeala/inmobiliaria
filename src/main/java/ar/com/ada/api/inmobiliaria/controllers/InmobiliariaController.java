@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.Locador;
@@ -53,9 +54,16 @@ public class InmobiliariaController {
 
     @GetMapping("/locadores") /** funciona! método específico para tipo de usuario Inmobiliaria*/
 
-    public List<Locador> getLocadores() {
+     public List<Locador> getLocadores()/**@RequestParam(value = "nombre", required = false) String nombre*/ {
 
         List<Locador> locadores = ls.listarLocadores();
+
+        /**if (nombre == null) {
+            locadores = ls.buscarLocadoresOrdenadoPorNombre();
+        } else {
+            locadores = ls.buscarTodosPorNombre(nombre);
+        }*/
+
 
         return locadores;
 
