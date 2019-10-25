@@ -5,8 +5,8 @@ package ar.com.ada.api.inmobiliaria.models.request;
  */
 public class LoginRequest {
 
-	public Object username;
-	public Object password;
+	public String username;
+	public String password;
 
     
 }
