@@ -87,11 +87,11 @@ public class UsuarioService {
 			String estadoUsuario, Date fechaAltaUsuario) {
 		return null;
 	}
-    public void login(String username, Object password) {
+    public void login(String username, String password) {
 
         Usuario u = repo.findByUserName(username);
 
-        if (u == null || !u.getPassword().equals(Crypto.encrypt(password, u.getUserName()))) {
+        if (u == null || !u.getPassword().equals(Crypto.encrypt((String) password, u.getUserName()))) {
 
             throw new BadCredentialsException("Usuario o contraseña invalida");
         }
