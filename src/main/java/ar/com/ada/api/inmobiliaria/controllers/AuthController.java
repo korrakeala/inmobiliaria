@@ -36,10 +36,11 @@ public class AuthController {
         RegistrationResponse r = new RegistrationResponse();
         // aca creamos la persona y el usuario a travez del service.
 
-        int uId = usuarioService.crearUsuario(req.fullName, req.dni, req.email, req.edad, req.password);
+        int uId = usuarioService.crearUsuario(req.password, req.email, req.password);
+     
 
         r.isOk = true;
-        r.message = "Te registraste con exitoooo";
+        r.message = "Usuario registrado";
         r.userId = uId;
         return r;
 

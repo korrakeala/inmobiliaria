@@ -27,7 +27,7 @@ public class LocatarioService {
 
     public Locatario crearLocatario(String nombre, String dni, int edad, String email, String password, String estadoUsuario, Date fechaAltaUsuario) {
         Locatario l = new Locatario();
-        Usuario u = us.crearUsuario(password, email, l, estadoUsuario, fechaAltaUsuario);
+        Usuario u = us.crearUsuario(nombre, dni, edad, password, email, l, estadoUsuario, fechaAltaUsuario);
         
         l.setNombre(nombre);
         l.setDni(dni);

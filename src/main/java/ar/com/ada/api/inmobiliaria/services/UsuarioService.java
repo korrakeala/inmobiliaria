@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.inmobiliaria.entities.Locatario;
 import ar.com.ada.api.inmobiliaria.entities.Usuario;
 import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 import ar.com.ada.api.inmobiliaria.repo.UsuarioRepository;
+import ar.com.ada.api.inmobiliaria.security.Crypto;
 
 /**
  * UsuarioService
@@ -40,8 +43,8 @@ public class UsuarioService {
 
     }
 
-    public Usuario buscarPorId(int id) {
-        Optional<Usuario> u = repo.findById(id);
+    public Usuario buscarPorId(String username) {
+        Optional<Usuario> u = repo.findById(username);
         if (u.isPresent())
             return u.get();
         return null;
@@ -68,7 +71,31 @@ public class UsuarioService {
         return u;
     }
 
+    private Usuario buscarPorId(int id) {
+        return null;
+    }
+
     public List<Usuario> listarUsuarios() {
         return repo.findAll();
     }
+
+	public int crearUsuario(ITieneUsuario password, String email, ITieneUsuario password2) {
+		return 0;
+	}
+
+	public Usuario crearUsuario(String nombre, String dni, int edad, String password, String email, Locatario l,
+			String estadoUsuario, Date fechaAltaUsuario) {
+		return null;
+	}
+    public void login(String username, Object password) {
+
+        Usuario u = repo.findByUserName(username);
+
+        if (u == null || !u.getPassword().equals(Crypto.encrypt(password, u.getUserName()))) {
+
+            throw new BadCredentialsException("Usuario o contraseña invalida");
+        }
+
+    }
+
 }
