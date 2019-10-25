@@ -28,6 +28,7 @@ import ar.com.ada.api.inmobiliaria.services.InmuebleService;
 import ar.com.ada.api.inmobiliaria.services.JWTUserDetailsService;
 import ar.com.ada.api.inmobiliaria.services.VentaService;
 
+
 /**
  * AvisoController
  */

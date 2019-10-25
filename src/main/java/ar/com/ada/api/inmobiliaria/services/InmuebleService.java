@@ -75,7 +75,7 @@ public class InmuebleService {
     public Inmueble reservarInmueble(int avisoId, int locatarioId) {
         Aviso a = as.buscarPorId(avisoId);
         Inmueble i = buscarPorId(a.getInmueble().getInmuebleId());
-        Locatario l = locats.buscarPorId(locatarioId);
+        Locatario l = locats.buscarPorId(locatarioId); //no encuentra el locatario, no entiendo por qué si en Get Locatario By Id funciona
         Reserva r = rs.crearReserva(a, i, l);
 
         i.setReserva(r);
