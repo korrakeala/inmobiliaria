@@ -3,8 +3,6 @@ package ar.com.ada.api.inmobiliaria.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,15 +15,13 @@ import ar.com.ada.api.inmobiliaria.entities.Aviso;
 import ar.com.ada.api.inmobiliaria.entities.Venta;
 import ar.com.ada.api.inmobiliaria.models.request.AvisoAlquilerRequest;
 import ar.com.ada.api.inmobiliaria.models.request.AvisoVentaRequest;
-import ar.com.ada.api.inmobiliaria.models.request.LoginRequest;
 import ar.com.ada.api.inmobiliaria.models.response.AvisoAlquilerResponse;
 import ar.com.ada.api.inmobiliaria.models.response.AvisoVentaResponse;
-import ar.com.ada.api.inmobiliaria.models.response.JwtResponse;
-import ar.com.ada.api.inmobiliaria.security.JWTTokenUtil;
+
 import ar.com.ada.api.inmobiliaria.services.AlquilerService;
 import ar.com.ada.api.inmobiliaria.services.AvisoService;
 import ar.com.ada.api.inmobiliaria.services.InmuebleService;
-import ar.com.ada.api.inmobiliaria.services.JWTUserDetailsService;
+
 import ar.com.ada.api.inmobiliaria.services.VentaService;
 
 
@@ -43,13 +39,8 @@ public class AvisoController {
     VentaService vs;
     @Autowired
     InmuebleService is;
-    @Autowired
-    private JWTTokenUtil jwtTokenUtil;
-
-    @Autowired
-    private JWTUserDetailsService userDetailsService;
-
-    @PostMapping("/avisos/alquileres") //funciona! exclusivo de usuario inmobiliaria
+    
+    @PostMapping("/avisos/alquileres") // funciona! exclusivo de usuario inmobiliaria
     public AvisoAlquilerResponse postAvisoAlquiler(@RequestBody AvisoAlquilerRequest req){
         AvisoAlquilerResponse r = new AvisoAlquilerResponse();
 
