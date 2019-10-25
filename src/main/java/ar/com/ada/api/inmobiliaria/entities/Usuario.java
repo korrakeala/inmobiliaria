@@ -125,5 +125,9 @@ public class Usuario implements ITieneUsuario {
         this.fechaBajaUsuario = fechaBajaUsuario;
     }
 
+	public String getUserName() {
+		return username;
+	}
+   
 
 }

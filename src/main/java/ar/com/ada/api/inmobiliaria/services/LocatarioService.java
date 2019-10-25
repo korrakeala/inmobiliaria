@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.Locatario;
 import ar.com.ada.api.inmobiliaria.entities.Usuario;
 import ar.com.ada.api.inmobiliaria.repo.LocatarioRepository;
+import ar.com.ada.api.inmobiliaria.security.Crypto;
 
 /**
  * LocatarioService
@@ -36,6 +38,16 @@ public class LocatarioService {
         repo.save(l);
 
         return l;
+
+    }
+    public void login(String username, String password) {
+
+        Usuario u = repo.findByUserName(username);
+
+        if (u == null || !u.getPassword().equals(Crypto.encrypt(password, (String) u.getUserName()))) {
+
+            throw new BadCredentialsException("Usuario o contraseña invalida");
+        }
 
     }
 
