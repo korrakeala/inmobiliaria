@@ -28,16 +28,16 @@ public class InmobiliariaService {
         this.repo.save(inmobiliaria);
     }
 
-    public int crearInmobiliaria(String cuit, String nombre, String email, String password, String estadoUsuario, Date fechaAltaUsuario) {
+    public Inmobiliaria crearInmobiliaria(String cuit, String nombre, String email, String password) {
         Inmobiliaria inmo = new Inmobiliaria();
-        Usuario u = us.crearUsuario(password, email, inmo, estadoUsuario, fechaAltaUsuario);
+        Usuario u = us.crearUsuario(password, email, inmo);
         
         inmo.setCuit(cuit);
         inmo.setNombre(nombre);
         inmo.setUsuario(u);
         repo.save(inmo);
 
-        return inmo.getInmobiliariaId();
+        return inmo;
 
     }
 

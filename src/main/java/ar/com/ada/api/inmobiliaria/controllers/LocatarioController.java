@@ -24,17 +24,18 @@ public class LocatarioController {
     @Autowired
     LocatarioService ls;
 
+    /*
     @PostMapping("/locatarios") //funciona!
     public LocatarioResponse postCrearLocatarioYUsuario(@RequestBody LocatarioRequest req){
         LocatarioResponse r = new LocatarioResponse();
 
-        Locatario l = ls.crearLocatario(req.nombre, req.dni, req.edad, req.email, req.password, req.estadoUsuario, req.fechaAltaUsuario);
+        Locatario l = ls.crearLocatario(req.nombre, req.dni, req.edad, req.email, req.password, req.estadoUsuario);
 
         r.isOk = true;
         r.message = "Locatario generado";
         r.locatarioId = l.getLocatarioId();
         return r; 
-    }
+    }*/
 
     @GetMapping("/locatarios") /**funciona */
     public List<Locatario> getLocatarios() {

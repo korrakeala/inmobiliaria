@@ -61,4 +61,10 @@ public class Locatario extends Persona implements ITieneUsuario {
         return tipoUsuario;
     }
 
+    @Override
+    public int getId() {
+        
+        return this.getId();
+    }
+
 }

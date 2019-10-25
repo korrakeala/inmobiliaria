@@ -9,9 +9,5 @@ public class InmobiliariaRequest {
     public String email;
     public String password;
     public String estadoUsuario;
-    public Date fechaAltaUsuario;
-    public Date fechaBajaUsuario;
-
-
 
 }

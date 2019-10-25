@@ -5,5 +5,7 @@ package ar.com.ada.api.inmobiliaria.interfaces;
  */
 public interface ITieneUsuario {
 
+    public int getId();
+
     
 }

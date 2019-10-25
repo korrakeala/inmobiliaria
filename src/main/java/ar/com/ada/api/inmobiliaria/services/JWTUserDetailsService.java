@@ -23,7 +23,7 @@ public class JWTUserDetailsService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Usuario u = usuarioService.buscarPorId(username);
+        Usuario u = usuarioService.buscarPorUsername(username);
 
         if (u != null) {
             return new User(u.getUserName(), u.getPassword(), new ArrayList<>());
@@ -31,9 +31,4 @@ public class JWTUserDetailsService implements UserDetailsService{
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
     }
-
-	public UserDetails loadUserByUsername(Object username) {
-		return null;
-	}
-
 }

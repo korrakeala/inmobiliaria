@@ -128,6 +128,12 @@ public class Usuario implements ITieneUsuario {
 	public String getUserName() {
 		return username;
 	}
+
+    @Override
+    public int getId() {
+        
+        return this.getUsuarioId();
+    }
    
 
 }

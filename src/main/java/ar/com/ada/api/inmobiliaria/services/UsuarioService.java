@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
-import ar.com.ada.api.inmobiliaria.entities.Locatario;
 import ar.com.ada.api.inmobiliaria.entities.Usuario;
 import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 import ar.com.ada.api.inmobiliaria.repo.UsuarioRepository;
@@ -26,9 +25,8 @@ public class UsuarioService {
         this.repo.save(u);
     }
 
-    public Usuario crearUsuario(String password, String email, ITieneUsuario tieneUsuario, String estadoUsuario, Date fechaAltaUsuario) {
+    public Usuario crearUsuario(String password, String email, ITieneUsuario tieneUsuario) {
         Usuario u = new Usuario();
-        u.setPassword(password);
         u.setEmail(email);
         u.setUsername(u.getEmail());
         u.setTipoUsuario(tieneUsuario.toString());
@@ -36,6 +34,10 @@ public class UsuarioService {
         u.setFechaAltaUsuario(f);
         u.setEstadoUsuario("Activo");
 
+        String passwordEnTextoClaro = password;
+        String passwordEncriptada = Crypto.encrypt(passwordEnTextoClaro, u.getUsername());
+
+        u.setPassword(passwordEncriptada);
 
         repo.save(u);
 
@@ -43,8 +45,8 @@ public class UsuarioService {
 
     }
 
-    public Usuario buscarPorId(String username) {
-        Optional<Usuario> u = repo.findById(username);
+    public Usuario buscarPorId(int id) {
+        Optional<Usuario> u = repo.findById(id);
         if (u.isPresent())
             return u.get();
         return null;
@@ -71,25 +73,20 @@ public class UsuarioService {
         return u;
     }
 
-    private Usuario buscarPorId(int id) {
-        return null;
-    }
-
     public List<Usuario> listarUsuarios() {
         return repo.findAll();
     }
 
-	public int crearUsuario(ITieneUsuario password, String email, ITieneUsuario password2) {
-		return 0;
-	}
+    public Usuario buscarPorUsername(String username){
 
-	public Usuario crearUsuario(String nombre, String dni, int edad, String password, String email, Locatario l,
-			String estadoUsuario, Date fechaAltaUsuario) {
-		return null;
-	}
+        Usuario u = repo.findByUsername(username);
+        return u;
+
+    }
+
     public void login(String username, String password) {
 
-        Usuario u = repo.findByUserName(username);
+        Usuario u = repo.findByUsername(username);
 
         if (u == null || !u.getPassword().equals(Crypto.encrypt((String) password, u.getUserName()))) {
 

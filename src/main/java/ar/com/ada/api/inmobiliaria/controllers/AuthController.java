@@ -6,12 +6,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import ar.com.ada.api.inmobiliaria.entities.Inmobiliaria;
+import ar.com.ada.api.inmobiliaria.entities.Locatario;
+import ar.com.ada.api.inmobiliaria.excepciones.TipoUsuarioException;
+import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
+import ar.com.ada.api.inmobiliaria.models.request.InmobiliariaRequest;
+import ar.com.ada.api.inmobiliaria.models.request.LocatarioRequest;
 import ar.com.ada.api.inmobiliaria.models.request.LoginRequest;
 import ar.com.ada.api.inmobiliaria.models.request.RegistrationRequest;
+import ar.com.ada.api.inmobiliaria.models.response.InmobiliariaResponse;
 import ar.com.ada.api.inmobiliaria.models.response.JwtResponse;
+import ar.com.ada.api.inmobiliaria.models.response.LocatarioResponse;
 import ar.com.ada.api.inmobiliaria.models.response.RegistrationResponse;
 import ar.com.ada.api.inmobiliaria.security.JWTTokenUtil;
+import ar.com.ada.api.inmobiliaria.services.InmobiliariaService;
 import ar.com.ada.api.inmobiliaria.services.JWTUserDetailsService;
+import ar.com.ada.api.inmobiliaria.services.LocatarioService;
 import ar.com.ada.api.inmobiliaria.services.UsuarioService;
 
 /**
@@ -22,6 +32,12 @@ public class AuthController {
     @Autowired
     UsuarioService usuarioService;
 
+    @Autowired
+    InmobiliariaService is;
+
+    @Autowired
+    LocatarioService ls;
+
     /*
      * @Autowired private AuthenticationManager authenticationManager;
      */
@@ -31,19 +47,50 @@ public class AuthController {
     @Autowired
     private JWTUserDetailsService userDetailsService;
 
-    @PostMapping("auth/register")
-    public RegistrationResponse postRegisterUser(@RequestBody RegistrationRequest req){
-        RegistrationResponse r = new RegistrationResponse();
-        // aca creamos la persona y el usuario a travez del service.
+    @PostMapping("/inmobiliarias/auth/register") // funciona! habría que poner restricción para que se pueda crear sólo una?
+    public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req) {
+        InmobiliariaResponse r = new InmobiliariaResponse();
 
-        int uId = usuarioService.crearUsuario(req.password, req.email, req.password);
+        Inmobiliaria inmo = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password);
+        
+        r.isOk = true;
+        r.message = "Inmobiliaria generada";
+        r.inmobiliariaId = inmo.getInmobiliariaId();
+        return r;
+    }
+
+    @PostMapping("/locatarios/auth/register") //funciona!
+    public LocatarioResponse postCrearLocatarioYUsuario(@RequestBody LocatarioRequest req){
+        LocatarioResponse r = new LocatarioResponse();
+
+        Locatario l = ls.crearLocatario(req.nombre, req.dni, req.edad, req.email, req.password);
+
+        r.isOk = true;
+        r.message = "Locatario generado";
+        r.locatarioId = l.getLocatarioId();
+        return r; 
+    }
+    
+    @PostMapping("/auth/register")
+    public RegistrationResponse postRegisterUser(@RequestBody RegistrationRequest req) throws TipoUsuarioException {
+        RegistrationResponse r = new RegistrationResponse();
+        
+        ITieneUsuario tieneUsuario;
+
+        if (req.tipoUsuario.equals("Inmobiliaria")) {
+            tieneUsuario = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password);
+        } else {
+            if (req.tipoUsuario.equals("Locatario")) {
+                tieneUsuario = ls.crearLocatario(req.nombre, req.dni, req.edad, req.email, req.password);
+            }
+            throw new TipoUsuarioException("El tipo de usuario no existe");
+        }
      
 
         r.isOk = true;
         r.message = "Usuario registrado";
-        r.userId = uId;
+        r.Id = tieneUsuario.getId();
         return r;
-
     }
 
     @PostMapping("auth/login")

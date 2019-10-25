@@ -7,9 +7,12 @@ import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
  */
 public class RegistrationRequest {
 
-	public String nombre;
-	public String email;
-	public ITieneUsuario password;
-
+	public String tipoUsuario;
+	public String cuit;
+    public String nombre;
+    public String email;
+    public String password;
+    public String dni;
+    public int edad;
     
 }

@@ -25,9 +25,9 @@ public class LocatarioService {
     @Autowired
     UsuarioService us;
 
-    public Locatario crearLocatario(String nombre, String dni, int edad, String email, String password, String estadoUsuario, Date fechaAltaUsuario) {
+    public Locatario crearLocatario(String nombre, String dni, int edad, String email, String password) {
         Locatario l = new Locatario();
-        Usuario u = us.crearUsuario(nombre, dni, edad, password, email, l, estadoUsuario, fechaAltaUsuario);
+        Usuario u = us.crearUsuario(password, email, l);
         
         l.setNombre(nombre);
         l.setDni(dni);
@@ -40,11 +40,11 @@ public class LocatarioService {
         return l;
 
     }
-    public void login(String username, String password) {
+    public void login(String nombre, String password) {
 
-        Usuario u = repo.findByUserName(username);
+        Locatario l = repo.findByNombre(nombre);
 
-        if (u == null || !u.getPassword().equals(Crypto.encrypt(password, (String) u.getUserName()))) {
+        if (l == null || !l.getUsuario().getPassword().equals(Crypto.encrypt(password, (String) l.getUsuario().getUsername()))) {
 
             throw new BadCredentialsException("Usuario o contraseña invalida");
         }

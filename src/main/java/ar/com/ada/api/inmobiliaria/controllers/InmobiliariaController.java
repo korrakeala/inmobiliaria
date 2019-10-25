@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.com.ada.api.inmobiliaria.entities.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.Locador;
 import ar.com.ada.api.inmobiliaria.models.request.InmobiliariaRequest;
 import ar.com.ada.api.inmobiliaria.models.request.LocadorRequest;
@@ -26,17 +27,17 @@ public class InmobiliariaController {
     @Autowired
     LocadorService ls;
 
-    @PostMapping("/inmobiliarias") // funciona! habría que poner restricción para que se pueda crear sólo una?
+    /*@PostMapping("/inmobiliarias") // funciona! habría que poner restricción para que se pueda crear sólo una?
     public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req) {
         InmobiliariaResponse r = new InmobiliariaResponse();
 
-        int inmobiliariaId = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password, req.estadoUsuario,
-                req.fechaAltaUsuario);
+        Inmobiliaria inmo = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password, req.estadoUsuario);
+        
         r.isOk = true;
         r.message = "Inmobiliaria generada";
-        r.inmobiliariaId = inmobiliariaId;
+        r.inmobiliariaId = inmo.getInmobiliariaId();
         return r;
-    }
+    }*/
 
     @PostMapping("/locadores") // funciona! método específico para tipo de usuario Inmobiliaria
     public LocadorResponse postRegisterLocador(@RequestBody LocadorRequest req) {

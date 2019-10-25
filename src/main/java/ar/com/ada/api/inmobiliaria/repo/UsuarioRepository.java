@@ -13,9 +13,7 @@ import ar.com.ada.api.inmobiliaria.entities.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 
-	Usuario findByUserName(String username);
-
-	Optional<Usuario> findById(String username);
+	public Usuario findByUsername(String username);
 
     
 }

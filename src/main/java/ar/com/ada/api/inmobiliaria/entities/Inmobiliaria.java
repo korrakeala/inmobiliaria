@@ -51,10 +51,6 @@ public class Inmobiliaria implements ITieneUsuario {
         this.usuario = usuario;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -70,5 +66,11 @@ public class Inmobiliaria implements ITieneUsuario {
     @Override
     public String toString() {
         return tipoUsuario;
+    }
+
+    @Override
+    public int getId() {
+        
+        return this.getId();
     }
 }

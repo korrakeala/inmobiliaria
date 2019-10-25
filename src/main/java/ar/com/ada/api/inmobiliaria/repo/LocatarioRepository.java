@@ -12,7 +12,7 @@ import ar.com.ada.api.inmobiliaria.entities.Usuario;
 @Repository
 public interface LocatarioRepository extends JpaRepository<Locatario, Integer>{
 
-	Usuario findByUserName(String username);
+	Locatario findByNombre(String nombre);
 
     
 }
