@@ -63,11 +63,7 @@ public class InmuebleController {
         return r;
     }
 
-    //no encuentra el locatario, no entiendo por qué si en GetLocatarioById funciona
-    @PostMapping("/inmuebles/reservas/{id}")
-    //probé con @Pathvariable pero me dice "Optional int parameter 'locatid' is present but cannot be 
-    // translated into a null value due to being declared as a primitive type. Consider declaring it
-    // as object wrapper for the corresponding primitive type."
+    @PostMapping("/inmuebles/reservas/{id}") // Funciona!
     public ReservarInmuebleResponse reservarInmueble(@PathVariable int id, @RequestBody ReservaInmuebleRequest req){
         ReservarInmuebleResponse r = new ReservarInmuebleResponse();
 
