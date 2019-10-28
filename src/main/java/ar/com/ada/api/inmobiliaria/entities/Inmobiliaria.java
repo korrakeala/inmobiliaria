@@ -27,14 +27,6 @@ public class Inmobiliaria implements ITieneUsuario {
     @Transient
     private String tipoUsuario = "Inmobiliaria";
 
-    public int getInmobiliariaId() {
-        return id;
-    }
-
-    public void setInmobiliariaId(int inmobiliariaId) {
-        this.id = inmobiliariaId;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -42,17 +34,9 @@ public class Inmobiliaria implements ITieneUsuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public Usuario getUsuario() {
-        return usuario;
-    }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCuit() {
@@ -70,7 +54,15 @@ public class Inmobiliaria implements ITieneUsuario {
 
     @Override
     public int getId() {
-        
-        return this.getId();
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public Usuario getUsuario() {
+        return this.usuario;
     }
 }

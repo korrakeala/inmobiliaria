@@ -83,4 +83,8 @@ public class Aviso {
     public Aviso() {
     }
 
+    public void setOperacion(IOperable operacion) {
+        this.operacion = operacion;
+    }
+
 }

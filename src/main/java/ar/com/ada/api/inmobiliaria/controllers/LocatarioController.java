@@ -61,8 +61,8 @@ public class LocatarioController {
         Locatario l = ls.bajaLocatario(id);
 
         r.isOk = true;
-        r.message = "Locatario " + l.getNombre() + "dado de baja";
-        r.locatarioId = l.getLocatarioId();
+        r.message = "Locatario " + l.getNombre() + " dado de baja.";
+        r.locatarioId = l.getId();
 
         return r;
     }

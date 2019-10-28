@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.Locatario;
@@ -27,6 +28,7 @@ import ar.com.ada.api.inmobiliaria.services.UsuarioService;
 /**
  * AuthController
  */
+@RestController
 public class AuthController {
 
     @Autowired
@@ -47,7 +49,7 @@ public class AuthController {
     @Autowired
     private JWTUserDetailsService userDetailsService;
 
-    @PostMapping("/inmobiliarias/auth/register") // funciona! habría que poner restricción para que se pueda crear sólo una?
+    @PostMapping("/inmobiliarias/auth/register")
     public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req) {
         InmobiliariaResponse r = new InmobiliariaResponse();
 
@@ -55,11 +57,11 @@ public class AuthController {
         
         r.isOk = true;
         r.message = "Inmobiliaria generada";
-        r.inmobiliariaId = inmo.getInmobiliariaId();
+        r.inmobiliariaId = inmo.getId();
         return r;
     }
 
-    @PostMapping("/locatarios/auth/register") //funciona!
+    @PostMapping("/locatarios/auth/register")
     public LocatarioResponse postCrearLocatarioYUsuario(@RequestBody LocatarioRequest req){
         LocatarioResponse r = new LocatarioResponse();
 
@@ -67,7 +69,7 @@ public class AuthController {
 
         r.isOk = true;
         r.message = "Locatario generado";
-        r.locatarioId = l.getLocatarioId();
+        r.locatarioId = l.getId();
         return r; 
     }
     
@@ -85,11 +87,11 @@ public class AuthController {
             }
             throw new TipoUsuarioException("El tipo de usuario no existe");
         }
-     
 
         r.isOk = true;
-        r.message = "Usuario registrado";
-        r.Id = tieneUsuario.getId();
+        r.message = "Usuario tipo " + req.tipoUsuario + " registrado con éxito.";
+        r.usuarioId = tieneUsuario.getUsuario().getUsuarioId();
+        r.tipoId = tieneUsuario.getId();
         return r;
     }
 

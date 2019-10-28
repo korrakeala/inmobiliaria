@@ -64,8 +64,6 @@ public class AvisoController {
         return r;
     }
 
-
-
     @GetMapping("/avisos") /** funciona! */
     public List<Aviso> getAvisos() {
         List<Aviso> av = as.listarAvisos();

@@ -29,24 +29,12 @@ public class Locatario extends Persona implements ITieneUsuario {
     @Transient
     private String tipoUsuario = "Locatario";
 
-    public int getLocatarioId() {
-        return id;
-    }
-
-    public void setLocatarioId(int locatarioId) {
-        this.id = locatarioId;
-    }
-
     public List<Reserva> getReservas() {
         return reservas;
     }
 
     public void setReservas(List<Reserva> reservas) {
         this.reservas = reservas;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
@@ -63,8 +51,16 @@ public class Locatario extends Persona implements ITieneUsuario {
 
     @Override
     public int getId() {
-        
-        return this.getId();
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public Usuario getUsuario() {
+        return this.usuario;
     }
 
 }

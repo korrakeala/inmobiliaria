@@ -8,7 +8,7 @@ import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario implements ITieneUsuario {
+public class Usuario {
 
     @Id
     @Column(name = "usuario_id")
@@ -127,13 +127,6 @@ public class Usuario implements ITieneUsuario {
 
 	public String getUserName() {
 		return username;
-	}
-
-    @Override
-    public int getId() {
-        
-        return this.getUsuarioId();
-    }
-   
+	}   
 
 }

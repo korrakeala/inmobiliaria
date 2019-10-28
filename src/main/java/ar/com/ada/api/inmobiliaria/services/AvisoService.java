@@ -42,20 +42,16 @@ public class AvisoService {
 
     }
 
-    /*public void crearAviso(int inmuebleId, String operacion) {
-        Aviso a = new Aviso();
-        Inmueble i = is.buscarPorId(inmuebleId);
-        a.setInmueble(i);
-        IOperable o =
-    }
-    */
     public Aviso crearAvisoAlquiler(int inmuebleId, String moneda, int plazoMeses, String tipoAlquiler, double valor) {
         Aviso a = new Aviso();
         Inmueble i = is.buscarPorId(inmuebleId);
         a.setInmueble(i);
         Alquiler al = as.crearAlquiler(moneda, plazoMeses, tipoAlquiler, valor);
         al.setAviso(a);
-        a.setOperacionYTipo(al);
+        //a.setOperacionYTipo(al);
+        a.setTipoOperacion(al.toString());
+        a.setOperacion(al);
+        as.grabar(al);
         repo.save(a);
 
         return a;
@@ -68,7 +64,10 @@ public class AvisoService {
         a.setInmueble(i);
         Venta v = vs.crearVenta(moneda, valor);
         v.setAviso(a);
-        a.setOperacionYTipo(v);
+        //a.setOperacionYTipo(v);
+        a.setTipoOperacion(v.toString());
+        a.setOperacion(v);
+        vs.grabar(v);
         repo.save(a);
 
         return a;
