@@ -48,7 +48,7 @@ public class AuthController {
 
     @Autowired
     private JWTUserDetailsService userDetailsService;
-
+    
     @PostMapping("/auth/register")
     public RegistrationResponse postRegisterUser(@RequestBody RegistrationRequest req) throws TipoUsuarioException {
         RegistrationResponse r = new RegistrationResponse();
