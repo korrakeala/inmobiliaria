@@ -78,13 +78,13 @@ public class AvisoController {
         return av;
     }
 
-    @PutMapping("/avisos/alquileres/{id}") // No funciona aún, será incorporado para tercera entrega
+    @PutMapping("/avisos/alquileres/{id}") // funciona
     public AvisoAlquilerResponse actualizarAvisoAlquiler(@PathVariable int id, @RequestBody AvisoAlquilerRequest req){
         AvisoAlquilerResponse r = new AvisoAlquilerResponse();
         
         Aviso a = as.buscarPorId(id);
         a.setInmueble(is.buscarPorId(req.inmuebleId));
-        Alquiler al = (Alquiler)a.getOperacion();   
+        Alquiler al = a.getAlquiler();   
         al.setMoneda(req.moneda);
         al.setPlazoMeses(req.plazoMeses);
         al.setTipoAlquiler(req.tipoAlquiler);
@@ -99,13 +99,13 @@ public class AvisoController {
         return r;
     }
 
-    @PutMapping("/avisos/ventas/{id}") // No funciona aún, será incorporado para tercera entrega
+    @PutMapping("/avisos/ventas/{id}") // funciona
     public AvisoVentaResponse actualizarAvisoVenta(@PathVariable int id, @RequestBody AvisoVentaRequest req){
         AvisoVentaResponse r = new AvisoVentaResponse();
         
         Aviso a = as.buscarPorId(id);
         a.setInmueble(is.buscarPorId(req.inmuebleId));
-        Venta v = (Venta)a.getOperacion();   
+        Venta v = a.getVenta();   
         v.setMoneda(req.moneda);
         v.setValor(req.valor);
         vs.grabar(v);

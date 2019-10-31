@@ -3,6 +3,9 @@ package ar.com.ada.api.inmobiliaria.entities;
 import java.util.Date;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ar.com.ada.api.inmobiliaria.interfaces.IOperable;
 
 /**
@@ -21,14 +24,17 @@ public class Reserva implements IOperable {
 
     @ManyToOne
     @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
+    @JsonIgnore
     private Locatario locatario;
 
     @OneToOne
     @JoinColumn(name= "inmueble_id", referencedColumnName = "inmueble_id")
+    @JsonIgnore
     private Inmueble inmueble;
 
     @OneToOne
     @JoinColumn(name= "aviso_id", referencedColumnName = "aviso_id")
+    @JsonIgnore
     private Aviso aviso;
 
     public Date getFecha() {

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ar.com.ada.api.inmobiliaria.interfaces.ITieneUsuario;
 
 /**
@@ -20,6 +22,7 @@ public class Locatario extends Persona implements ITieneUsuario {
     private int id; // cambio nombre del atributo para poder mapear ITieneUsuario con Usuario
 
     @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Reserva> reservas = new ArrayList<Reserva>(); //creo que hay que sacar reserva_id en la DB
 
     @OneToOne

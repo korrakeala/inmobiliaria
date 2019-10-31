@@ -46,6 +46,7 @@ public class AvisoService {
         Aviso a = new Aviso();
         Inmueble i = is.buscarPorId(inmuebleId);
         a.setInmueble(i);
+        repo.save(a);
         Alquiler al = as.crearAlquiler(moneda, plazoMeses, tipoAlquiler, valor);
         al.setAviso(a);
         //a.setOperacionYTipo(al);
@@ -62,6 +63,7 @@ public class AvisoService {
         Aviso a = new Aviso();
         Inmueble i = is.buscarPorId(inmuebleId);
         a.setInmueble(i);
+        repo.save(a);
         Venta v = vs.crearVenta(moneda, valor);
         v.setAviso(a);
         //a.setOperacionYTipo(v);

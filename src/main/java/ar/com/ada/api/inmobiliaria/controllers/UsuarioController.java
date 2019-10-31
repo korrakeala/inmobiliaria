@@ -18,20 +18,6 @@ public class UsuarioController {
     @Autowired
     UsuarioService us;
 
-    /*@PostMapping("/usuarios") Locatario e Inmobiliaria crean cada uno su respectivo usuario
-    public UsuarioResponse postRegUsuario(@RequestBody UsuarioRequest req){
-        
-        Usuario u = us.crearUsuario(req.password, req.email, req.tipoUsuario);
-    
-        UsuarioResponse r = new UsuarioResponse();
-        r.isOk = true;
-        r.message = "Usuario creado con exito";
-        r.usuarioId = u.getTipoUsuario();
-        
-        return r;
-
-    }*/
-
     @GetMapping("/usuarios") // exclusivo de tipo de usuario Inmobiliaria
     public List<Usuario> getUsuarios() {
 

@@ -49,34 +49,10 @@ public class AuthController {
     @Autowired
     private JWTUserDetailsService userDetailsService;
 
-    @PostMapping("/inmobiliarias/auth/register")
-    public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req) {
-        InmobiliariaResponse r = new InmobiliariaResponse();
-
-        Inmobiliaria inmo = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password);
-        
-        r.isOk = true;
-        r.message = "Inmobiliaria generada";
-        r.inmobiliariaId = inmo.getId();
-        return r;
-    }
-
-    @PostMapping("/locatarios/auth/register")
-    public LocatarioResponse postCrearLocatarioYUsuario(@RequestBody LocatarioRequest req){
-        LocatarioResponse r = new LocatarioResponse();
-
-        Locatario l = ls.crearLocatario(req.nombre, req.dni, req.edad, req.email, req.password);
-
-        r.isOk = true;
-        r.message = "Locatario generado";
-        r.locatarioId = l.getId();
-        return r; 
-    }
-    
     @PostMapping("/auth/register")
     public RegistrationResponse postRegisterUser(@RequestBody RegistrationRequest req) throws TipoUsuarioException {
         RegistrationResponse r = new RegistrationResponse();
-        
+
         ITieneUsuario tieneUsuario;
 
         if (req.tipoUsuario.equals("Inmobiliaria")) {
@@ -84,8 +60,9 @@ public class AuthController {
         } else {
             if (req.tipoUsuario.equals("Locatario")) {
                 tieneUsuario = ls.crearLocatario(req.nombre, req.dni, req.edad, req.email, req.password);
+            } else {
+                throw new TipoUsuarioException("El tipo de usuario no existe");
             }
-            throw new TipoUsuarioException("El tipo de usuario no existe");
         }
 
         r.isOk = true;
@@ -101,8 +78,7 @@ public class AuthController {
 
         usuarioService.login(authenticationRequest.username, authenticationRequest.password);
 
-        final UserDetails userDetails = userDetailsService
-            .loadUserByUsername(authenticationRequest.username);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.username);
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 

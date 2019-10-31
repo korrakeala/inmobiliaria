@@ -63,7 +63,7 @@ public class InmuebleController {
         return r;
     }
 
-    @PostMapping("/inmuebles/reservas/{id}") // Funciona!
+    @PostMapping("/inmuebles/{id}/reservas") // Funciona!
     public ReservarInmuebleResponse reservarInmueble(@PathVariable int id, @RequestBody ReservaInmuebleRequest req){
         ReservarInmuebleResponse r = new ReservarInmuebleResponse();
 
@@ -75,11 +75,11 @@ public class InmuebleController {
         return r;
     }
 
-    @PutMapping("/inmuebles/reservas/{id}") // No funciona aún, será incorporado para tercera entrega
-    public ReservarInmuebleResponse updateInmueble(@PathVariable int id, @RequestBody ReservaInmuebleRequest req) {
+    @PutMapping("/inmuebles/{id}/reservas") // No funciona aún, será incorporado para tercera entrega
+    public ReservarInmuebleResponse updateInmueble(@PathVariable int id) {
         ReservarInmuebleResponse r = new ReservarInmuebleResponse();
 
-        Inmueble i = is.reservarInmueble(id, req.locatarioId);
+        Inmueble i = is.modificarReserva(id);
 
         r.isOk = true;
         r.message = "Inmueble" + i.getInmuebleId() + "¡actualizado con éxito!";

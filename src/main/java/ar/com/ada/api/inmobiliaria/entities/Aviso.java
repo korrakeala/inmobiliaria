@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ar.com.ada.api.inmobiliaria.interfaces.IOperable;
 
 /**
@@ -30,6 +32,7 @@ public class Aviso {
     private Inmueble inmueble;
 
     @OneToOne(mappedBy = "aviso", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Reserva reserva;
     @OneToOne(mappedBy = "aviso", cascade = CascadeType.ALL)
     private Venta venta;
@@ -85,6 +88,22 @@ public class Aviso {
 
     public void setOperacion(IOperable operacion) {
         this.operacion = operacion;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public Alquiler getAlquiler() {
+        return alquiler;
+    }
+
+    public void setAlquiler(Alquiler alquiler) {
+        this.alquiler = alquiler;
     }
 
 }

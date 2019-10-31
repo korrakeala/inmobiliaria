@@ -85,4 +85,14 @@ public class InmuebleService {
         return i;
     }
 
+    public Inmueble modificarReserva(int avisoId) {
+        Aviso a = as.buscarPorId(avisoId);
+        Inmueble i = buscarPorId(a.getInmueble().getInmuebleId());
+
+        i.setReservado('n');
+
+        repo.save(i);
+        return i;
+    }
+
 }
