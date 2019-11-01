@@ -20,7 +20,7 @@ public class InmuebleController {
     @Autowired
     ReservaService rs;
 
-    @PostMapping("/inmuebles") /** funciona! método específico para tipo de usuario Inmobiliaria*/
+    @PostMapping("/inmuebles") // funciona!
     public InmuebleResponse postRegisterInmueble(@RequestBody InmuebleRequest req) {
 
         Inmueble i = is.crearInmueble(req.locadorId, req.tipoInmueble, req.cantAmb, req.direccion, req.superficie,
@@ -35,28 +35,32 @@ public class InmuebleController {
 
     }
 
-    @GetMapping("/inmuebles") /** funciona! método específico para tipo de usuario Inmobiliaria*/
+    @GetMapping("/inmuebles") // No funciona xq hay un problema con el Inmueble Id 1
     public List<Inmueble> getInmuebles() {
         List<Inmueble> li = is.getInmuebles();
 
         return li;
     }
 
-    @GetMapping("/inmuebles/{id}") /** funciona! método específico para tipo de usuario Inmobiliaria*/
+    @GetMapping("/inmuebles/{id}") // funciona! No funciona con el Inmueble Id 1
     public Inmueble getInmuebleById(@PathVariable int id) {
         Inmueble in = is.buscarPorId(id);
 
         return in;
     }
 
-    @GetMapping("/inmuebles/reservas") /** funciona! método específico para tipo de usuario Inmobiliaria*/
+    @GetMapping("/inmuebles/reservas") // no funciona :(
     public List<Reserva> getReservas() {
         List<Reserva> r = rs.listarReservas();
 
         return r;
     }
+    /** More than one row with the given identifier was found: 1, for class: 
+     * ar.com.ada.api.inmobiliaria.entities.Reserva; nested exception is 
+     * org.hibernate.HibernateException: More than one row with the given 
+     * identifier was found: 1, for class: ar.com.ada.api.inmobiliaria.entities.Reserva */
 
-    @GetMapping("/inmuebles/reservas/{id}") //método específico para tipo de usuario Inmobiliaria
+    @GetMapping("/inmuebles/reservas/{id}")
     public Reserva getReservaById(@PathVariable int id) {
         Reserva r = rs.buscarPorId(id);
 
@@ -75,14 +79,14 @@ public class InmuebleController {
         return r;
     }
 
-    @PutMapping("/inmuebles/{id}/reservas") // No funciona aún, será incorporado para tercera entrega
-    public ReservarInmuebleResponse updateInmueble(@PathVariable int id) {
+    @PutMapping("/inmuebles/{id}/reservas") // Funciona!
+    public ReservarInmuebleResponse updateReservaInmueble(@PathVariable int id) {
         ReservarInmuebleResponse r = new ReservarInmuebleResponse();
 
         Inmueble i = is.modificarReserva(id);
 
         r.isOk = true;
-        r.message = "Inmueble" + i.getInmuebleId() + "¡actualizado con éxito!";
+        r.message = "Reserva " + i.getReserva().getId() + " modificada con éxito!";
         r.reservaId = i.getReserva().getReservaId();
         return r;
     }

@@ -30,6 +30,7 @@ public class Inmueble {
     List<Aviso> avisos = new ArrayList<Aviso>();
 
     @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Reserva reserva;
 
     @Column(name = "tipo_inmueble")

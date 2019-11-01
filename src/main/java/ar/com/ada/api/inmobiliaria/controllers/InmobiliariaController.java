@@ -27,19 +27,7 @@ public class InmobiliariaController {
     @Autowired
     LocadorService ls;
 
-    /*@PostMapping("/inmobiliarias") // funciona! habría que poner restricción para que se pueda crear sólo una?
-    public InmobiliariaResponse postCrearInmobiliariaYUsuario(@RequestBody InmobiliariaRequest req) {
-        InmobiliariaResponse r = new InmobiliariaResponse();
-
-        Inmobiliaria inmo = is.crearInmobiliaria(req.cuit, req.nombre, req.email, req.password, req.estadoUsuario);
-        
-        r.isOk = true;
-        r.message = "Inmobiliaria generada";
-        r.inmobiliariaId = inmo.getInmobiliariaId();
-        return r;
-    }*/
-
-    @PostMapping("/locadores") // funciona! método específico para tipo de usuario Inmobiliaria
+    @PostMapping("/locadores") // funciona!
     public LocadorResponse postRegisterLocador(@RequestBody LocadorRequest req) {
         LocadorResponse r = new LocadorResponse();
 
@@ -52,7 +40,7 @@ public class InmobiliariaController {
 
     }
 
-    @GetMapping("/locadores") /** funciona! método específico para tipo de usuario Inmobiliaria*/
+    @GetMapping("/locadores") // funciona!
 
      public List<Locador> getLocadores()/**@RequestParam(value = "nombre", required = false) String nombre*/ {
 
@@ -69,7 +57,7 @@ public class InmobiliariaController {
 
     }
 
-    @GetMapping("/locadores/{id}") /** funciona! método específico para tipo de usuario Inmobiliaria*/
+    @GetMapping("/locadores/{id}") // funciona!
     public Locador getLocador(@PathVariable int id) {
 
         Locador l = ls.buscarPorId(id);

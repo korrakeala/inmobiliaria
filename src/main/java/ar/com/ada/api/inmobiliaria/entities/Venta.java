@@ -2,6 +2,8 @@ package ar.com.ada.api.inmobiliaria.entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ar.com.ada.api.inmobiliaria.interfaces.IOperable;
 
 /**
@@ -21,6 +23,7 @@ public class Venta implements IOperable {
 
     @OneToOne
     @JoinColumn(name= "aviso_id", referencedColumnName = "aviso_id")
+    @JsonIgnore
     private Aviso aviso;
 
     public String getMoneda() {

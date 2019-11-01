@@ -18,7 +18,7 @@ public class UsuarioController {
     @Autowired
     UsuarioService us;
 
-    @GetMapping("/usuarios") // exclusivo de tipo de usuario Inmobiliaria
+    @GetMapping("/usuarios")
     public List<Usuario> getUsuarios() {
 
         List<Usuario> usuarios = us.listarUsuarios();

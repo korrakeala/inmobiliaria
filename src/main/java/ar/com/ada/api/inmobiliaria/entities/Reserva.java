@@ -24,12 +24,10 @@ public class Reserva implements IOperable {
 
     @ManyToOne
     @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
-    @JsonIgnore
     private Locatario locatario;
 
     @OneToOne
     @JoinColumn(name= "inmueble_id", referencedColumnName = "inmueble_id")
-    @JsonIgnore
     private Inmueble inmueble;
 
     @OneToOne

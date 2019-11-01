@@ -27,6 +27,7 @@ public class Locatario extends Persona implements ITieneUsuario {
 
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+    @JsonIgnore
     private Usuario usuario;
 
     @Transient

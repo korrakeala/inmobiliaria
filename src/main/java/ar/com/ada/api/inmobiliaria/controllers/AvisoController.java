@@ -40,7 +40,7 @@ public class AvisoController {
     @Autowired
     InmuebleService is;
     
-    @PostMapping("/avisos/alquileres") // funciona! exclusivo de usuario inmobiliaria
+    @PostMapping("/avisos/alquileres") // funciona!
     public AvisoAlquilerResponse postAvisoAlquiler(@RequestBody AvisoAlquilerRequest req){
         AvisoAlquilerResponse r = new AvisoAlquilerResponse();
 
@@ -52,7 +52,7 @@ public class AvisoController {
         return r;
     }
 
-    @PostMapping("/avisos/ventas") //funciona! exclusivo de usuario inmobiliaria
+    @PostMapping("/avisos/ventas") //funciona!
     public AvisoVentaResponse postAvisoVenta(@RequestBody AvisoVentaRequest req){
         AvisoVentaResponse r = new AvisoVentaResponse();
 
@@ -64,19 +64,28 @@ public class AvisoController {
         return r;
     }
 
-    @GetMapping("/avisos") /** funciona! */
+    @GetMapping("/avisos") // No funciona :(
     public List<Aviso> getAvisos() {
         List<Aviso> av = as.listarAvisos();
 
         return av;
     }
+    /** No funciona xq hay un problema con el Inmueble Id 1
+     * More than one row with the given identifier was found: 1, for class: 
+     * ar.com.ada.api.inmobiliaria.entities.Inmueble; nested exception is 
+     * org.hibernate.HibernateException: More than one row with the given 
+     * identifier was found: 1, for class: ar.com.ada.api.inmobiliaria.entities.Inmueble */
 
-    @GetMapping("/avisos/{id}")
+    @GetMapping("/avisos/{id}") // No funciona :(
     public Aviso getAvisoById(@PathVariable int id) {
         Aviso av = as.buscarPorId(id);
 
         return av;
     }
+    /** DICE PARA AVISOS IDs 1 Y 2: More than one row with the given identifier was found: 1, for class: 
+     * ar.com.ada.api.inmobiliaria.entities.Aviso; nested exception is 
+     * org.hibernate.HibernateException: More than one row with the given 
+     * identifier was found: 1, for class: ar.com.ada.api.inmobiliaria.entities.Aviso */
 
     @PutMapping("/avisos/alquileres/{id}") // funciona
     public AvisoAlquilerResponse actualizarAvisoAlquiler(@PathVariable int id, @RequestBody AvisoAlquilerRequest req){
