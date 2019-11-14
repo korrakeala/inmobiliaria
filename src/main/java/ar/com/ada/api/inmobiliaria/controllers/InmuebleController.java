@@ -37,7 +37,7 @@ public class InmuebleController {
 
             InmuebleResponse r = new InmuebleResponse();
             r.isOk = true;
-            r.message = "inmueble creado con exito";
+            r.message = "inmueble creado con exito!!!!";
             r.inmuebleId = i.getInmuebleId();
 
             return r;
